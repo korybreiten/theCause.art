@@ -1,0 +1,434 @@
+#body {
+  font-family: 'Teko', sans-serif;
+  color: #989898;
+  background-color: #767676;
+  margin: 0;
+}
+
+.container {
+  padding: 0;
+  min-width: min-content;
+  max-width: unset !important;
+}
+
+.btn-check:active+.btn, .btn-check:checked+.btn, .btn.active, .btn.show, .btn:active {
+  color: #ffffff;
+  background-color: none;
+  border-color: none;
+}
+
+.btn-primary {
+  --bs-btn-color: #989898;
+  --bs-btn-bg: #7e00be;
+  --bs-btn-border-color: #7e00be;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #7e00be;
+  --bs-btn-hover-border-color: #7e00be;
+  --bs-btn-focus-shadow-rgb: 49,132,253;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #7e00be;
+  --bs-btn-active-border-color: #7e00be;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #ffffff;
+  --bs-btn-disabled-bg: #7e00be;
+  --bs-btn-disabled-border-color: #7e00be;
+}
+
+.btn-secondary {
+  --bs-btn-color: #989898;
+  --bs-btn-bg: #555555;
+  --bs-btn-border-color: #555555;
+  --bs-btn-hover-color: #ffffff;
+  --bs-btn-hover-bg: #555555;
+  --bs-btn-hover-border-color: #555555;
+  --bs-btn-focus-shadow-rgb: 49,132,253;
+  --bs-btn-active-color: #ffffff;
+  --bs-btn-active-bg: #555555;
+  --bs-btn-active-border-color: #555555;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: #ffffff;
+  --bs-btn-disabled-bg: #555555;
+  --bs-btn-disabled-border-color: #555555;
+}
+
+.modal-backdrop.show {
+  height: -webkit-fill-available;
+  width: -webkit-fill-available;
+}
+
+.progress {
+  width: -webkit-fill-available;
+  height: 5rem;
+  background: linear-gradient(180deg, #00000076 0%, #88ffba00 50%, #00000076 100%);
+  background-color: #7e00be;
+}
+
+.progress-bar {
+  background: linear-gradient(180deg, #00000076 0%, #88ffba00 50%, #00000076 100%);
+  background-color: #88ffb9;  
+}
+
+.carousel {
+  height: 46rem;
+}
+
+.carousel-control-prev {
+  translate: -3.7rem;
+}
+
+.carousel-control-next {
+  translate: 3.7rem;
+}
+
+.carousel-indicators {
+  translate: 0 2.5rem;
+}
+
+.modal-content {
+  color: #ffffff;
+  background-color: #767676;
+}
+
+.form-control {
+  color: #989898;
+  background-color: #363636;
+}
+
+h3 {
+  color: #88ffb9;
+}
+
+h4, p {
+  overflow-wrap: anywhere;
+}
+strong {
+  align-self: normal;
+}
+
+#content {
+  width: 44rem !important;
+  background-color: #767676;
+}
+
+#timerLeft {
+  margin: 0 .25rem 0 0;
+}
+
+#timerCenter {
+  margin: 0 .25rem 0 .25rem;
+}
+
+#timerRight {
+  margin: 0 0 0 .25rem;
+}
+
+#feed {
+  padding: 1rem 2rem 2rem 2rem;
+  margin-top: 1rem;
+  background-color: #555555;
+  border-radius: 1.5rem 1.5rem 1.5rem 1.5rem;
+}
+
+#icon {
+  background-color: none !important;
+}
+
+#causeIcon {
+  min-width: 5rem;
+  max-width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  border: .15rem solid;
+  border-radius: .25rem;
+  margin-right: 1rem;
+}
+
+#causeFeedCont {
+  margin-top: 1rem;
+}
+
+#causeFeedCard {
+  color: #ffffff;
+  background: #363636;
+}
+
+#causeDisplayCont {
+  margin-bottom: .5rem;
+}
+
+#causeDisplayCard {
+  color: #ffffff;
+  background: #363636;
+}
+
+#artistFeedCont {
+  margin-top: 1rem;
+  width: 7rem;
+  margin: 0 0.5rem 0 0.5rem;
+}
+
+#artistFeedAvatar {
+  min-width: 5rem;
+  max-width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  border: .15rem solid;
+  border-radius: .25rem;
+}
+
+#artistFeedAuction {
+  min-width: 5rem;
+  max-width: 5rem;
+  height: 5rem;
+  object-fit: cover;
+  border: .15rem solid;
+  border-radius: .25rem;
+  margin: .5rem 0 .5rem 0;
+}
+
+#artistFeedCard {
+  color: #ffffff;
+  background: #363636;
+  align-items: center;
+  text-align: center;
+}
+
+#searchDisplayCont {
+  margin-top: 1rem;
+}
+
+#searchDisplayCard {
+  background: #363636;
+}
+
+#profileDisplayCont {
+  background-color: #555555;
+  border-radius: 1.5rem;
+  color: #ffffff;
+  padding: 1rem;
+  margin-top: 1rem;
+  width: 44rem;
+  min-width: fit-content;
+}
+
+#profileDisplayStack1Left {
+  background-color: #363636;
+  border-radius: 1.5rem;
+  align-items: center;
+  text-align: center;
+  min-width: 12rem;
+  margin: .5rem;
+  padding: 1rem;
+  flex: none;
+}
+
+#profileDisplayStack1Right {
+  background-color: #363636;
+  border-radius: 1.5rem;
+  width: -webkit-fill-available;
+  min-height: 20rem;
+  height: fit-content;
+  align-items: flex-start;
+  text-align: start;
+  margin: .5rem;
+  padding: 1rem;
+  overflow-wrap: anywhere;
+}
+
+#profileDisplayStack2 {
+  background-color: #363636;
+  border-radius: 1.5rem;
+  width: -webkit-fill-available;
+  min-height: 11rem;
+  height: fit-content;
+  margin: .5rem;
+  padding: 1rem;
+  overflow-wrap: anywhere;
+}
+
+#editBioCont {
+  width: -webkit-fill-available;
+}
+
+#editBioButton {
+  width: 4rem;
+  height: inherit;
+  min-height: 3rem;
+}
+
+#editAvatarButton {
+  width: 10rem;
+  height: 10rem;
+  position: absolute;
+  translate: -10rem;
+  background: none;
+  border: none;
+  color: transparent;
+}
+
+#editAvatarButton:hover {
+  color: #7e00be;
+}
+
+#editAvatarIcon {
+  font-size: 5rem;
+  position: absolute;
+  translate: -2.5rem -5rem;
+}
+
+#editAuctionMainButton {
+  width: 7rem;
+  height: 7rem;
+  position: absolute;
+  translate: -7rem;
+  background: none;
+  border: none;
+  color: transparent;
+}
+
+#editAuctionMainButton:hover {
+  color: #7e00be;
+}
+
+#editAuctionMainIcon {
+  font-size: 2.5rem;
+  position: absolute;
+  translate: -1.25rem -2.5rem;
+}
+
+#editAuctionSideButton {
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  translate: -3rem;
+  background: none;
+  border: none;
+  color: transparent;
+}
+
+#editAuctionSideButton:hover {
+  color: #7e00be;
+}
+
+#editAuctionSideIcon {
+  font-size: 1.5rem;
+  position: absolute;
+  translate: -.75rem -1.5rem;
+}
+
+#bio {
+  width: -webkit-fill-available;
+  padding-right: 1rem;
+  margin: 0;
+  align-self: start;
+}
+
+#avatarCont {
+  width: 12rem;
+  height: 12rem;
+}
+
+#avatarProfile {
+  width: 10rem;
+  height: 10rem;
+  object-fit: cover;
+  border: 0.5rem solid #989898;
+  border-radius: 1rem;
+}
+
+#avatarProfileDefault {
+  width: 10rem;
+  margin-top: -1rem;
+  font-size: 10rem;
+  color: #989898;
+}
+
+#auctionMainCont {
+  width: 7rem;
+  margin: 0 .25rem 0 0;
+}
+
+#auctionMainProfile {
+  width: 7rem;
+  height: 7rem;
+  object-fit: cover;
+  border: 0.25rem solid #989898;
+  border-radius: .5rem;
+}
+
+#auctionMainProfileDefault {
+  width: 7rem;
+  margin-top: -1rem;
+  font-size: 5rem;
+  color: #989898;
+}
+
+#auctionSideCont {
+  width: 3.25rem;
+  margin: .25rem;
+}
+
+#auctionSideProfile {
+  width: 3.25rem;
+  height: 3.25rem;
+  object-fit: cover;
+  border: 0.25rem solid #989898;
+  border-radius: .5rem;
+}
+
+#auctionSideProfileDefault {
+  width: 3.25rem;
+  margin-top: -1rem;
+  font-size: 5rem;
+  color: #989898;
+}
+
+#auctionFeedCont {
+  margin: 1rem 0.5rem 0 0.5rem;
+  width: 9rem;
+}
+
+#auctionFeedCard {
+  color: #ffffff;
+  background: #363636;
+  width: 9rem;
+  height: 21.5rem;
+}
+
+#auctionFeedTop {
+  height: 10rem;
+}
+
+#auctionMainFeed {
+  width: 7rem;
+  height: 7rem;
+  object-fit: cover;
+  border: 0.25rem solid #989898;
+  border-radius: .5rem;
+}
+
+#auctionSideFeed {
+  width: 3.25rem;
+  height: 3.25rem;
+  object-fit: cover;
+  border: 0.25rem solid #989898;
+  border-radius: .5rem;
+  margin: .25rem;
+}
+
+
+  
+  /* @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  } */

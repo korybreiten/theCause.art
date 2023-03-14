@@ -1,0 +1,153 @@
+#navCont {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+#navHeader {
+  height: 3.5rem;
+  background-color: #363636;
+}
+
+#navLinks {
+  padding: 0 1rem 0 1rem;
+  position:relative;
+  height: 2.5rem;
+  overflow:hidden;
+  background: #7e00be;
+  border-radius: 0 0 1.5rem 1.5rem;
+}
+
+#logo {
+  transform: translateY(-.5rem);
+  margin-bottom: -1rem;
+  padding: 0 1rem 0 1rem;
+  font-family: 'Nabla', cursive;
+  font-size: 3rem;
+  background: -webkit-linear-gradient(90deg, #1EFF7A, #ffffff 75%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-decoration: none;
+}
+
+#avatar {
+  width: 2rem;
+  height: 2rem;
+  object-fit: cover;
+  border: .15rem solid;
+  border-radius: .25rem;
+}
+
+#avatarDefault {
+  width: 3rem;
+  margin-right: 1rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  font-family: 'Teko', sans-serif;
+  font-size: 2rem;
+  color: #989898;
+  text-decoration: none;
+}
+
+#avatarDefault:hover,
+#avatarDefault:focus {
+  color: #ffffff;
+}
+
+#link {
+  padding: 0 1rem 0 1rem;
+  transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+  font-family: 'Teko', sans-serif;
+  font-size: 1.25rem;
+  color: #989898;
+  text-decoration: none;
+  background: none;
+  border: none;
+}
+
+#link:hover,
+#link:focus {
+  color: #ffffff;
+}
+
+#joinCont {
+  text-align: right;
+}
+
+#loginCont {
+  width: 0;
+}
+
+#icon {
+  background-color: #989898;
+}
+
+#searchContainer {
+  min-width: 10rem;
+  padding-right: 1rem;
+}
+
+#searchBar {
+  color: #ffffff;
+  border: none;
+  border-radius: .25rem 0 0 .25rem;
+  height: 1.5rem;
+  background: #363636;
+  transition: none;
+}
+
+#clearSearch {
+  color: #ffffff;
+  background: #363636;
+  border: none;
+  border-radius: 0 .25rem .25rem 0;
+  font-size: .75rem;
+  height: 1.5rem;
+}
+
+#searchBlank {
+  background: #363636;
+  border: none;
+  border-radius: 0 .25rem .25rem 0;
+  height: 1.5rem;
+  width: 2rem;
+}
+
+#cartIcon {
+  color: #1EFF7A;
+  font-size: 1.5rem;
+  translate: 0 -.5rem;
+}
+
+#cartTotal {
+  font-size: 1.5rem;
+  translate: 0 .5rem;
+}
+
+#cartImage {
+  width: 4rem;
+  height: 4rem;
+  object-fit: cover;
+  border: 0.25rem solid #989898;
+  border-radius: 0.5rem;
+  margin-right: 1rem;
+}
+
+#cartRightStack {
+  margin-left: 1rem;
+}
+  
+  /* @media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+      animation: App-logo-spin infinite 20s linear;
+    }
+  }
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  } */
