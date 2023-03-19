@@ -157,7 +157,8 @@ export default function CauseForm1({ profileData, handleGetProfile }){
 
   async function handleGetCauseData(){
     try {
-      const data = await causeService.getOne(id)
+      const formData = {id: id};
+      const data = await causeService.getOne(formData);
       setCauseState(data);
     } catch (err) {
         console.log(err.message)

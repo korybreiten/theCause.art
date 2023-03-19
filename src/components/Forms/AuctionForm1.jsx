@@ -229,7 +229,8 @@ export default function AuctionForm1({ profileData, handleGetProfile }){
 
   async function handleGetAuctionData(){
     try {
-      const data = await auctionService.getOne(id);
+      const formData = {id: id};
+      const data = await auctionService.getOne(formData);
       setAuctionState(data);
       handleGetCauseData();
     } catch (err) {
