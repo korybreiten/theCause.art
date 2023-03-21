@@ -215,7 +215,7 @@ export default function AuctionForm1({ profileData, handleGetProfile }){
         cause: 0
       });
 
-      await auctionService.remove(id);
+      await auctionService.remove({id: id});
       const formData = { auction1: 0, id: profileData.id };
       await userService.update(formData);
       handleGetProfile();
@@ -258,10 +258,11 @@ export default function AuctionForm1({ profileData, handleGetProfile }){
     };
   };
 
-  function handleSetCause(cause){
+  function select(id){
+    console.log("CHECK")
     setAuctionState({
       ...auctionState,
-      cause: cause
+      cause: id
     });
     handleGetCauseData();
   };
@@ -365,7 +366,7 @@ export default function AuctionForm1({ profileData, handleGetProfile }){
                 {!causes || typeof causes == 'undefined' ? <h2>No Data</h2> : !Array.isArray(causes) ? <h2>Results are not Array</h2> :
                   causes.map((cause, idx) => {
                       return (
-                        <Dropdown.Item key={idx} onClick={() => handleSetCause(cause.id)}><CauseFeedCard cause={cause} key={idx}/></Dropdown.Item>
+                        <Dropdown.Item key={idx}><CauseFeedCard cause={cause} key={idx} select={select} /></Dropdown.Item>
                       )
                   })
                 }
@@ -449,7 +450,7 @@ export default function AuctionForm1({ profileData, handleGetProfile }){
                     {!causes || typeof causes == 'undefined' ? <h2>No Data</h2> : !Array.isArray(causes) ? <h2>Results are not Array</h2> :
                       causes.map((cause, idx) => {
                           return (
-                            <Dropdown.Item key={idx} onClick={() => handleSetCause(cause.id)}><CauseFeedCard cause={cause} key={idx}/></Dropdown.Item>
+                            <Dropdown.Item key={idx}><CauseFeedCard cause={cause} key={idx} select={select}/></Dropdown.Item>
                           )
                       })
                     }

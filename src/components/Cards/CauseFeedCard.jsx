@@ -3,9 +3,13 @@ import React, { useState, useEffect} from 'react';
 import { Card, Container, Stack, Image, ProgressBar } from 'react-bootstrap'
 
 
-export default function CauseFeedCard({ cause, idx }) { 
+export default function CauseFeedCard({ cause, idx, select }) { 
   const [time, setTime] = useState(Date.now());
   const total = (cause.start + (604800 * cause.time)) - (time / 1000);
+
+  function handleSetCause(id){
+    select(id);
+  };
 
   useEffect(() => {
     const interval = setInterval(() => setTime(Date.now()), 1000);
@@ -15,7 +19,7 @@ export default function CauseFeedCard({ cause, idx }) {
   }, []);
 
   return (
-    <Container id='causeFeedCont'>
+    <Container id='causeFeedCont' onClick={() => handleSetCause(cause.id)}>
       <Card id='causeFeedCard' key={idx}>
         <Card.Body>
           <Stack direction='horizontal'>
