@@ -3,12 +3,12 @@ import React, { useState, useEffect} from 'react';
 import { Card, Container, Stack, Image, ProgressBar } from 'react-bootstrap'
 
 
-export default function CauseFeedCard({ cause, idx, select }) { 
+export default function CauseFeedCard({ cause, idx, handleSelectCause }) { 
   const [time, setTime] = useState(Date.now());
   const total = (cause.start + (604800 * cause.time)) - (time / 1000);
 
   function handleSetCause(id){
-    select(id);
+    handleSelectCause(id);
   };
 
   useEffect(() => {
