@@ -10,7 +10,9 @@ Where communities and artists create change through causes!
 ### `html`
 ### `css`
 ### `javascript`
-### `reactjs`
 ### `mysql (mariadb)`
+### `expressjs`
+### `reactjs`
+### `nodejs`
 ### `sequelize`
 
