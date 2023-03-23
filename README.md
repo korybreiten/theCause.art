@@ -2,8 +2,8 @@
 
 Where communities and artists create change through causes!
 
-![theCause.art](https://i.imgur.com/J5MH56R.png)
-![theCause.art](https://i.imgur.com/nFmhFjG.png)
+![theCause.art](https://i.imgur.com/J5MH56Rm.png)
+![theCause.art](https://i.imgur.com/nFmhFjGm.png)
 
 ## Technologies Used:
 ### `html`
