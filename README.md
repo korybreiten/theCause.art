@@ -2,7 +2,9 @@
 
 Where communities and artists create change through causes!
 
+### Main Page
 ![theCause.art](https://i.imgur.com/J5MH56Rm.png)
+### Profile Page
 ![theCause.art](https://i.imgur.com/nFmhFjGm.png)
 
 ## Technologies Used:
