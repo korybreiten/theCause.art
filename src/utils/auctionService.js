@@ -50,6 +50,15 @@ export function getAll(){
     })
 }
 
+export function getCause(formData){
+    return fetch(BASE_URL + 'all/' + formData.id, {
+        method: 'GET'
+    }).then(res => {
+        if(res.ok) return res.json()
+        throw new Error('Get Auctions Error!')
+    })
+}
+
 export function remove(formData){
     return fetch(BASE_URL + formData.id, {
         method: 'DELETE'
@@ -65,5 +74,6 @@ export default {
     update,
     getOne,
     getAll,
+    getCause,
     remove
 };

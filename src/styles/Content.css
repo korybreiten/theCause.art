@@ -69,7 +69,7 @@
 }
 
 .carousel {
-  height: 46rem;
+  height: fit-content;
 }
 
 .carousel-control-prev {

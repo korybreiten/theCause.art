@@ -366,7 +366,7 @@ export default function AuctionForm1({ profileData, handleGetProfile }){
                 {!causes || typeof causes == 'undefined' ? <h2>No Data</h2> : !Array.isArray(causes) ? <h2>Results are not Array</h2> :
                   causes.map((cause, idx) => {
                       return (
-                        <Dropdown.Item key={idx}><CauseFeedCard cause={cause} key={idx} handleSelectCause={handleSelectCause} /></Dropdown.Item>
+                        <Dropdown.Item key={idx} onClick={() => handleSelectCause(cause.id)}><CauseFeedCard cause={cause} key={idx} /></Dropdown.Item>
                       )
                   })
                 }
@@ -450,7 +450,7 @@ export default function AuctionForm1({ profileData, handleGetProfile }){
                     {!causes || typeof causes == 'undefined' ? <h2>No Data</h2> : !Array.isArray(causes) ? <h2>Results are not Array</h2> :
                       causes.map((cause, idx) => {
                           return (
-                            <Dropdown.Item key={idx}><CauseFeedCard cause={cause} key={idx} handleSelectCause={handleSelectCause}/></Dropdown.Item>
+                            <Dropdown.Item key={idx} onClick={() => handleSelectCause(cause.id)}><CauseFeedCard cause={cause} key={idx} /></Dropdown.Item>
                           )
                       })
                     }

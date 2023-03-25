@@ -8,6 +8,7 @@ module.exports = {
   update,
   getOne,
   getAll,
+  getCause,
   remove
 };
 
@@ -74,6 +75,16 @@ async function getAll(req, res) {
 
   } catch (err) {
     return res.status(400).json(err);
+  };
+};
+
+async function getCause(req, res) {
+  try {
+      const auctions = await Auctions.findAll({ where: { cause: req.params.id } });
+      return res.status(200).json( auctions );
+
+  } catch (err) {
+      return res.status(400).json(err);
   };
 };
 

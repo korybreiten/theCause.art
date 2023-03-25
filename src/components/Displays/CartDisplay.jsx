@@ -27,8 +27,8 @@ export default function CartDisplay({ profileData, handleGetBids, bids, subtotal
         let i = 0;
         if (i < bids.length) {
             if (bids[i].status !== 'COMPLETE') {
-                console.log(bids[i])
                 handleBidUpdate(bids[i].id);
+                console.log("BID", bids[i], "COMPLETED");
                 i++;
             };
         }
@@ -62,7 +62,6 @@ export default function CartDisplay({ profileData, handleGetBids, bids, subtotal
         }, [type]);
     
         return (<PayPalButtons
-            style={{color: 'silver'}}
             createOrder={(data, actions) => {
                 return actions.order
                     .create({

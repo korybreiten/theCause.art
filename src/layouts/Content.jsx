@@ -60,7 +60,7 @@ export default function Content({ results, searchError, sendGetUser, handleGetBi
       let auctionData6 = [];
       let count = 1;
       data.sort(function(a,b){return a.start - b.start});
-      data.sort(function(a, b){return b.funds - a.funds});
+      data.sort(function(a,b){return b.funds - a.funds});
       data.forEach(function(auction){
         if (count >= 1 && count <= 4) {
           auctionData1.push(auction);
