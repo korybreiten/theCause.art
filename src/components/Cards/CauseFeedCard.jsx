@@ -2,13 +2,13 @@ import React, { useState, useEffect} from 'react';
 import auctionService from '../../utils/auctionService';
 
 import { Card, Container, Stack, Image, ProgressBar, Carousel, Button } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 export default function CauseFeedCard({ cause, idx}) { 
-  const [auctions1, setAuctions1] = useState([]);
-  const [auctions2, setAuctions2] = useState([]);
-  const [auctions3, setAuctions3] = useState([]);
+  const [auctions1, setAuctions1] = useState();
+  const [auctions2, setAuctions2] = useState();
+  const [auctions3, setAuctions3] = useState();
   const [totalAuctions, setTotalAuctions] = useState();
   
   const [time, setTime] = useState(Date.now());
@@ -125,16 +125,14 @@ export default function CauseFeedCard({ cause, idx}) {
                       }
                     </Carousel.Item>
                   </Carousel>
-                  <Stack direction={'horizontal'}>
-                    <Button onClick={() => setDropdown(false)}>Hide Auctions /\</Button>
-                    <Button variant='secondary' onClick={navigateToCause}>View All</Button>
+                  <Stack direction={'horizontal'} style={{alignSelf: 'center', height: '1rem'}}>
+                    <Link id='link' onClick={() => setDropdown(false)}><strong className="bi bi-chevron-up" style={{fontSize: '2rem'}}></strong></Link>
                   </Stack>
                 </Stack>
               </Container>
               :
-              <Stack direction='horizontal'>
-                <Button onClick={() => setDropdown(true)}>View Auctions \/</Button>
-                <Button variant='secondary' onClick={navigateToCause}>View All</Button>
+              <Stack direction='horizontal' style={{alignSelf: 'center', height: '1rem'}}>
+                <Link id='link' onClick={() => setDropdown(true)}><strong className="bi bi-chevron-down" style={{fontSize: '2rem'}}></strong></Link>
               </Stack>
             }
             

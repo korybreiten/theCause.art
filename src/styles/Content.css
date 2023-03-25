@@ -151,6 +151,7 @@ strong {
 }
 
 #causeFeedCard {
+  height: min-content;
   color: #ffffff;
   background: #363636;
 }
