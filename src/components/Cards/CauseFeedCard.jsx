@@ -1,18 +1,23 @@
 import React, { useState, useEffect} from 'react';
 import auctionService from '../../utils/auctionService';
 
-import { Card, Container, Stack, Image, ProgressBar, Carousel } from 'react-bootstrap'
+import { Card, Container, Stack, Image, ProgressBar, Carousel, Button } from 'react-bootstrap'
+import { useNavigate } from 'react-router-dom';
 
 
 export default function CauseFeedCard({ cause, idx}) { 
   const [auctions1, setAuctions1] = useState([]);
   const [auctions2, setAuctions2] = useState([]);
   const [auctions3, setAuctions3] = useState([]);
+  const [totalAuctions, setTotalAuctions] = useState();
   
   const [time, setTime] = useState(Date.now());
   const total = (cause.start + (604800 * cause.time)) - (time / 1000);
 
   const [index, setIndex] = useState(0);
+  const [dropdown, setDropdown] = useState(false);
+
+  const navigate = useNavigate();
 
   const handleSelect = (selectedIndex, e) => {
     setIndex(selectedIndex);
@@ -43,9 +48,14 @@ export default function CauseFeedCard({ cause, idx}) {
       setAuctions1(auctionData1);
       setAuctions2(auctionData2);
       setAuctions3(auctionData3);
+      setTotalAuctions(data.length);
     } catch (err) {
       console.log(err.message);
     }
+  }
+
+  function navigateToCause(){
+    navigate('/causes')
   }
 
   useEffect(() => {
@@ -66,6 +76,7 @@ export default function CauseFeedCard({ cause, idx}) {
               <Stack style={{width: '19rem'}}>
                 <strong>{cause.name}</strong>
                 <strong>${cause.funds} / ${cause.goal}</strong>
+                <strong>Auctions: {totalAuctions}</strong>
                 <Stack direction='horizontal'>
                   <strong id='timerLeft'>{ Math.floor(total / 60 / 60 / 24 / 7) } W</strong>
                   <strong id='timerCenter'>{ Math.floor(total / 60 / 60 / 24 % 7) } D</strong>
@@ -76,41 +87,57 @@ export default function CauseFeedCard({ cause, idx}) {
               </Stack>
               <ProgressBar now={cause.funds / cause.goal * 100} />
             </Stack>
-            <Carousel activeIndex={index} onSelect={handleSelect} interval={null} wrap={false} >
-              <Carousel.Item>
-                {!auctions1 || typeof auctions1 == 'undefined' ? <h2>No Data</h2> : !Array.isArray(auctions1) ? <h2>Results are not Array</h2> :
-                  auctions1.map((auction, idx) => {
-                      return (
-                        
-                          <Image key={idx} src={ auction.image1 } alt='' id='causeIcon' />
-                        
-                      )
-                  })
-                }
-              </Carousel.Item>
-              <Carousel.Item>
-                {!auctions2 || typeof auctions2 == 'undefined' ? <h2>No Data</h2> : !Array.isArray(auctions2) ? <h2>Results are not Array</h2> :
-                  auctions2.map((auction, idx) => {
-                      return (
-                        
-                          <Image key={idx} src={ auction.image1 } alt='' id='causeIcon' />
-                        
-                      )
-                  })
-                }
-              </Carousel.Item>
-              <Carousel.Item>
-                {!auctions3 || typeof auctions3 == 'undefined' ? <h2>No Data</h2> : !Array.isArray(auctions3) ? <h2>Results are not Array</h2> :
-                  auctions3.map((auction, idx) => {
-                      return (
-                        
-                          <Image key={idx} src={ auction.image1 } alt='' id='causeIcon' />
-                        
-                      )
-                  })
-                }
-              </Carousel.Item>
-            </Carousel>
+            { dropdown ?
+              <Container>
+                <Stack>
+                  <Carousel activeIndex={index} onSelect={handleSelect} interval={null} wrap={false} >
+                    <Carousel.Item>
+                      {!auctions1 || typeof auctions1 == 'undefined' ? <h2>No Data</h2> : !Array.isArray(auctions1) ? <h2>Results are not Array</h2> :
+                        auctions1.map((auction, idx) => {
+                            return (
+                              
+                                <Image key={idx} src={ auction.image1 } alt='' id='causeIcon' />
+                              
+                            )
+                        })
+                      }
+                    </Carousel.Item>
+                    <Carousel.Item>
+                      {!auctions2 || typeof auctions2 == 'undefined' ? <h2>No Data</h2> : !Array.isArray(auctions2) ? <h2>Results are not Array</h2> :
+                        auctions2.map((auction, idx) => {
+                            return (
+                              
+                                <Image key={idx} src={ auction.image1 } alt='' id='causeIcon' />
+                              
+                            )
+                        })
+                      }
+                    </Carousel.Item>
+                    <Carousel.Item>
+                      {!auctions3 || typeof auctions3 == 'undefined' ? <h2>No Data</h2> : !Array.isArray(auctions3) ? <h2>Results are not Array</h2> :
+                        auctions3.map((auction, idx) => {
+                            return (
+                              
+                                <Image key={idx} src={ auction.image1 } alt='' id='causeIcon' />
+                              
+                            )
+                        })
+                      }
+                    </Carousel.Item>
+                  </Carousel>
+                  <Stack direction={'horizontal'}>
+                    <Button onClick={() => setDropdown(false)}>Hide Auctions /\</Button>
+                    <Button variant='secondary' onClick={navigateToCause}>View All</Button>
+                  </Stack>
+                </Stack>
+              </Container>
+              :
+              <Stack direction='horizontal'>
+                <Button onClick={() => setDropdown(true)}>View Auctions \/</Button>
+                <Button variant='secondary' onClick={navigateToCause}>View All</Button>
+              </Stack>
+            }
+            
           </Stack>
         </Card.Body>
       </Card>
