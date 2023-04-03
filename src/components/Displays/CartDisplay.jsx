@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {Link} from 'react-router-dom';
 import ErrorMessage from '../System/ErrorMessage';
 import bidService from '../../utils/bidService';
-import userService from '../../utils/userService';
 import BidDisplayCard from '../Cards/BidDisplayCard';
-import { PayPalScriptProvider, PayPalButtons, usePayPalScriptReducer } from "@paypal/react-paypal-js";
 
 import { Button, Form, Container, Stack, Modal, Image, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 import auctionService from '../../utils/auctionService';
@@ -34,10 +32,10 @@ export default function CartDisplay({ profileData, handleGetBids, bids, subtotal
         }
     };
 
-    async function handleBidUpdate(bid){
+    async function handleBidUpdate(bidId){
         try {
             let formData = {
-                id: bid.id,
+                id: bidId,
                 status: 'COMPLETE'
             };
             await bidService.update(formData);
@@ -46,63 +44,6 @@ export default function CartDisplay({ profileData, handleGetBids, bids, subtotal
         } catch (err) {
             console.log(err.message);
         };
-    };
-
-    const ButtonWrapper = ({ type }) => {
-        const [{ options }, dispatch] = usePayPalScriptReducer();
-    
-        useEffect(() => {
-            dispatch({
-                type: "resetOptions",
-                value: {
-                    ...options,
-                    intent: "authorize",
-                },
-            });
-        }, [type]);
-    
-        return (<PayPalButtons
-            createOrder={(data, actions) => {
-                return actions.order
-                    .create({
-                        advanced: {
-                            commit: 'true',
-                            extraQueryParams: [
-                                {
-                                    name: 'intent',
-                                    value: 'authorize'
-                                }
-                            ]
-                        },
-                        purchase_units: [
-                            {
-                                amount: {
-                                    currency_code: 'USD',
-                                    value: total + '.00',
-                                }
-                            },
-                        ]
-                    })
-                    .then((orderId) => {
-                        console.log('Order Id', orderId);
-                        return orderId;
-                    });
-            }}
-            onApprove={function (data, actions) {
-                return actions.order.authorize().then(function (details) {
-                    console.log(details);
-                    if (details.status === "COMPLETED"){
-                        handleBidComplete()
-                        console.log('Transaction Authorized');
-                    } else {
-                        console.log('Transaction Incomplete');
-                    };
-                });
-            }}
-            onError={(err) => {
-                return console.log(err.message)
-            }}
-        />);
     };
         
     return (
@@ -130,15 +71,6 @@ export default function CartDisplay({ profileData, handleGetBids, bids, subtotal
                                     <h4>Subtotal: ${subtotal ? subtotal : 0}.00</h4>
                                     <h4>Fees: ${fees ? fees : 0}.00</h4>
                                     <h3>Total: ${total ? total : 0}.00</h3>
-                                    <PayPalScriptProvider
-                                        options={{
-                                            "client-id": process.env.REACT_APP_CLIENT_ID,
-                                            components: "buttons",
-                                            intent: "authorize"
-                                        }}
-                                    >
-                                        <ButtonWrapper type="authorize" />
-                                    </PayPalScriptProvider>
                                 </Stack>
                             </Stack>
                         </Stack>

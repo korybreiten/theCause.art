@@ -59,28 +59,30 @@ export default function Content({ results, searchError, sendGetUser, handleGetBi
       let auctionData5 = [];
       let auctionData6 = [];
       let count = 1;
-      data.sort(function(a,b){return a.start - b.start});
+      data.sort(function(a,b){return b.start - a.start});
       data.sort(function(a,b){return b.funds - a.funds});
       data.forEach(function(auction){
-        if (count >= 1 && count <= 4) {
-          auctionData1.push(auction);
-        };
-        if (count >= 5 && count <= 8) {
-          auctionData2.push(auction);
-        };
-        if (count >= 9 && count <= 12) {
-          auctionData3.push(auction);
-        };
-        if (count >= 13 && count <= 16) {
-          auctionData4.push(auction);
-        };
-        if (count >= 17 && count <= 20) {
-          auctionData5.push(auction);
-        };
-        if (count >= 21 && count <= 24) {
-          auctionData6.push(auction);
-        };
-        count += 1;
+        if (!auction.cause) {
+          if (count >= 1 && count <= 4) {
+            auctionData1.push(auction);
+          };
+          if (count >= 5 && count <= 8) {
+            auctionData2.push(auction);
+          };
+          if (count >= 9 && count <= 12) {
+            auctionData3.push(auction);
+          };
+          if (count >= 13 && count <= 16) {
+            auctionData4.push(auction);
+          };
+          if (count >= 17 && count <= 20) {
+            auctionData5.push(auction);
+          };
+          if (count >= 21 && count <= 24) {
+            auctionData6.push(auction);
+          };
+          count += 1;
+        }
       })
       setAuctions1(auctionData1);
       setAuctions2(auctionData2);

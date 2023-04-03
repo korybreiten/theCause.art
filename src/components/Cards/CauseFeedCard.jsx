@@ -95,9 +95,7 @@ export default function CauseFeedCard({ cause, idx}) {
                       {!auctions1 || typeof auctions1 == 'undefined' ? <h2>No Data</h2> : !Array.isArray(auctions1) ? <h2>Results are not Array</h2> :
                         auctions1.map((auction, idx) => {
                             return (
-                              
-                                <Image key={idx} src={ auction.image1 } alt='' id='causeIcon' />
-                              
+                              <Image key={idx} src={ auction.image1 } alt='' id='causeIcon' />
                             )
                         })
                       }
@@ -106,9 +104,7 @@ export default function CauseFeedCard({ cause, idx}) {
                       {!auctions2 || typeof auctions2 == 'undefined' ? <h2>No Data</h2> : !Array.isArray(auctions2) ? <h2>Results are not Array</h2> :
                         auctions2.map((auction, idx) => {
                             return (
-                              
-                                <Image key={idx} src={ auction.image1 } alt='' id='causeIcon' />
-                              
+                              <Image key={idx} src={ auction.image1 } alt='' id='causeIcon' />
                             )
                         })
                       }
@@ -117,9 +113,7 @@ export default function CauseFeedCard({ cause, idx}) {
                       {!auctions3 || typeof auctions3 == 'undefined' ? <h2>No Data</h2> : !Array.isArray(auctions3) ? <h2>Results are not Array</h2> :
                         auctions3.map((auction, idx) => {
                             return (
-                              
-                                <Image key={idx} src={ auction.image1 } alt='' id='causeIcon' />
-                              
+                              <Image key={idx} src={ auction.image1 } alt='' id='causeIcon' />
                             )
                         })
                       }

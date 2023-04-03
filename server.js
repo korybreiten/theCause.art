@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const express = require('express');
 const path = require('path');
 const logger = require('morgan');
@@ -6,6 +7,7 @@ const favicon = require('serve-favicon');
 const cors = require('cors');
 
 require('./config/database');
+require('./src/automation');
 
 // Require controllers here
 
@@ -37,6 +39,8 @@ app.get('/*', function(req, res) {
 
 const db = require("./config/database");
 db.sequelize.sync();
+
+
 
 const expressPort = process.env.EXPRESS_PORT || 8080;
 
