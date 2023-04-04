@@ -14,7 +14,8 @@ async function create(req, res) {
     try {
         const cause = await Causes.create({
             creator: req.body.creator,
-            funds: 0
+            funds: 0,
+            status: 'ACTIVE'
         })
         const causeId = cause.dataValues.id;
 
@@ -35,7 +36,8 @@ async function update(req, res) {
             funds: req.body.funds,
             start: req.body.start,
             time: req.body.time,
-            icon: req.body.icon
+            icon: req.body.icon,
+            status: req.body.status
         });
 
         return res.status(200).json({});
@@ -56,7 +58,7 @@ async function getOne(req, res) {
 
 async function getAll(req, res){
     try {
-        const causes = await Causes.findAll({ order: [['funds', 'DESC'], ['goal', 'ASC']], limit: 6 });
+        const causes = await Causes.findAll({ order: [['funds', 'DESC'], ['goal', 'ASC']], limit: 4 });
         res.status(200).json( causes )
         
     } catch(err){

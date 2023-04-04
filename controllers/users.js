@@ -120,7 +120,7 @@ async function getUsername(req, res) {
 
 async function getAll(req, res) {
   try {
-    const data = await Users.findAll({ limit: 4 });
+    const data = await Users.findAll({ limit: 5 });
     let users = [];
     data.forEach(function(user){
       const userData = {

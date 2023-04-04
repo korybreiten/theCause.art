@@ -37,6 +37,10 @@ module.exports = (sequelize, Sequelize) => {
         icon: {
             type: Sequelize.STRING,
             allowNull: true
+        },
+        status: {
+            type: Sequelize.STRING,
+            allowNull: false
         }
     });
 

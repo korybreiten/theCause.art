@@ -7,7 +7,7 @@ import { Card, Container, Stack, Image, Button, Form } from 'react-bootstrap'
 
 export default function AuctionFeedCard({ auction, idx, handleGetBids }) { 
   const [time, setTime] = useState(Date.now());
-  const total = (auction.start + (604800 * auction.time)) - (time / 1000);
+  const total = (auction.start + (2500 * auction.time)) - (time / 1000); // 604800 = 1 Week
 
   const [amount, setAmount] = useState(0);
 
@@ -30,7 +30,6 @@ export default function AuctionFeedCard({ auction, idx, handleGetBids }) {
       };
       bidService.create(formData1);
       handleGetBids();
-      console.log("hello")
     } catch (err) {
       console.log(err.message)
     }

@@ -49,7 +49,7 @@ export default function AuctionForm1({ profileData, handleGetProfile }){
   };
 
   const [time, setTime] = useState(Date.now());
-  const total = (start + (604800 * duration)) - (time / 1000);
+  const total = (start + (10000 * duration)) - (time / 1000); // 604800 = 1 Week
 
   const [showUpdate, setShowUpdate] = useState(false);
   const [showStart, setShowStart] = useState(false);
