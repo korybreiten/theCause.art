@@ -95,10 +95,20 @@ export default function Content({ results, searchError, sendGetUser, handleGetBi
     };
   };
 
+  function refresh() {
+    handleGetCauses();
+    handleGetArtists();
+    handleGetAuctions();
+  }
+
   useEffect(() => {
     handleGetCauses();
     handleGetArtists();
     handleGetAuctions();
+    const interval = setInterval(() => refresh(), 10000);
+    return () => {
+      clearInterval(interval);
+    };
   }, [])
 
   return (

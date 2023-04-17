@@ -91,7 +91,8 @@ export default function CauseForm1({ profileData, handleGetProfile }){
         goal: causeState.goal,
         funds: causeState.funds,
         start: startDate,
-        time: causeState.time
+        time: causeState.time,
+        status: 'ACTIVE'
       }
       await causeService.update(formData);
       handleGetProfile();

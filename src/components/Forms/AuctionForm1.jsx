@@ -124,7 +124,8 @@ export default function AuctionForm1({ profileData, handleGetProfile }){
         start: startDate,
         time: timeDuration,
         funds: auctionState.funds,
-        cause: auctionState.cause
+        cause: auctionState.cause,
+        status: 'ACTIVE'
       }
       await auctionService.update(formData);
       handleGetProfile();

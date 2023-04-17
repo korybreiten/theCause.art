@@ -15,7 +15,7 @@ async function create(req, res) {
         const cause = await Causes.create({
             creator: req.body.creator,
             funds: 0,
-            status: 'ACTIVE'
+            status: 'CREATED'
         })
         const causeId = cause.dataValues.id;
 

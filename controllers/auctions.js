@@ -17,7 +17,7 @@ async function create(req, res) {
     const auction = await Auctions.create({
       creator: req.body.creator,
       funds: 0,
-      status: 'ACTIVE'
+      status: 'CREATED'
     })
     const auctionId = auction.dataValues.id;
 

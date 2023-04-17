@@ -7,7 +7,7 @@ import { Card, Container, Stack, Image, Button, Form } from 'react-bootstrap'
 
 export default function AuctionFeedCard({ auction, idx, handleGetBids }) { 
   const [time, setTime] = useState(Date.now());
-  const total = (auction.start + (604800 * auction.time)) - (time / 1000);
+  const total = (auction.start + (2500 * auction.time)) - (time / 1000);
 
   const user = userService.getToken();
   let creator = '';

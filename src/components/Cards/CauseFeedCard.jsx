@@ -12,7 +12,7 @@ export default function CauseFeedCard({ cause, idx}) {
   const [totalAuctions, setTotalAuctions] = useState();
   
   const [time, setTime] = useState(Date.now());
-  const total = (cause.start + (604800 * cause.time)) - (time / 1000);
+  const total = (cause.start + (10000 * cause.time)) - (time / 1000);
 
   const [index, setIndex] = useState(0);
   const [dropdown, setDropdown] = useState(false);
@@ -129,7 +129,7 @@ export default function CauseFeedCard({ cause, idx}) {
                 <Link id='link' onClick={() => setDropdown(true)}><strong className="bi bi-chevron-down" style={{fontSize: '2rem'}}></strong></Link>
               </Stack>
             }
-            
+            <strong>{cause.status}</strong>
           </Stack>
         </Card.Body>
       </Card>

@@ -28,7 +28,8 @@ async function checkActive() {
         const causes = await Causes.findAll({ where: { status: 'ACTIVE'} });
         causes.forEach(function(cause){
             // 604800 = 1 Week
-            const total = (cause.start + (2500 * cause.duration)) - (Date.now() / 1000);
+            let total = (cause.start + (500 * cause.time)) - (Date.now() / 1000);
+            console.log(total)
             if (total <= 0) {
                 updateCause(cause.id)
             }
@@ -37,7 +38,8 @@ async function checkActive() {
         const auctions = await Auctions.findAll({ where: { status: 'ACTIVE'} });
         auctions.forEach(function(auction){
             // 604800 = 1 Week
-            const total = (auction.start + (2500 * auction.duration)) - (Date.now() / 1000);
+            let total = (auction.start + (500 * auction.time)) - (Date.now() / 1000);
+            console.log(total)
             if (total <= 0) {
                 updateAuction(auction.id)
             }
@@ -48,7 +50,6 @@ async function checkActive() {
             if (bid.cause > 0) {
                 checkBidCause(bid.id, bid.cause)
             } else {
-                console.log("YARGWGWGWGAGAGAGAGAG")
                 checkBidAuction(bid.id, bid.auction);
             }
         })
@@ -61,8 +62,23 @@ async function checkActive() {
     };
 }
 
+async function updateCause(causeId) {
+    try {
+        console.log('***Updating Cause***')
+        const cause = await Causes.findOne({ where: { id: causeId } });
+
+        await cause.update({
+            status: 'COMPLETED'
+        })
+        console.log('***Cause ', cause.name, ' Completed***')
+    } catch (err) {
+        console.log(err.message);
+    }
+}
+
 async function updateAuction(auctionId) {
     try {
+        console.log('***Updating Auction***')
         const auction = await Auctions.findOne({ where: { id: auctionId } });
 
         await auction.update({
@@ -85,9 +101,10 @@ async function checkBidCause(bidId, causeId) {
             bid.update({
                 status: 'COMPLETED'
             })
+            console.log('***Bid ', bid.id, ' Completed***')
         }
 
-        console.log('***Bid Completed***')
+        
     } catch (err) {
         console.log(err.message);
     }
@@ -104,9 +121,10 @@ async function checkBidAuction(bidId, auctionId) {
             bid.update({
                 status: 'COMPLETED'
             })
+            console.log('***Bid ', bid.id, ' Completed***')
         }
 
-        console.log('***Bid Completed***')
+        
     } catch (err) {
         console.log(err.message);
     }
@@ -121,7 +139,7 @@ async function checkBidCauseResult() {
         bids.sort(function(a,b){return a.cause - b.cause});
         bids.sort(function(a,b){return a.funds - b.funds});
 
-        console.log('***Bid Cause Order***', bids)
+        // console.log('***Bid Cause Order***', bids)
     } catch (err) {
         console.log(err.message);
     }
@@ -136,7 +154,7 @@ async function checkBidAuctionResult() {
         bids.sort(function(a,b){return a.auction - b.auction});
         bids.sort(function(a,b){return a.funds - b.funds});
 
-        console.log('***Bid Auction Order***', bids)
+        // console.log('***Bid Auction Order***', bids)
     } catch (err) {
         console.log(err.message);
     }

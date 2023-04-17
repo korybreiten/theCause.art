@@ -56,6 +56,7 @@ export default function BidDisplayCard({ bid, idx, handleGetBids, setAuctionId }
                 <strong>Auction: { auction && auction.name ? auction.name : 'Error' }</strong>
                 <strong>Cause: { cause && cause.name ? cause.name : 'None' }</strong>
                 <strong>Amount: ${ bid.amount }.00</strong>
+                <strong>{bid.status}</strong>
               </Stack>
             </Stack>
             <Button variant='danger' onClick={handleRemoveBid}>Remove</Button>

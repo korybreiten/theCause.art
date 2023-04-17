@@ -7,7 +7,7 @@ import { Card, Container, Stack, Image, Button, Form } from 'react-bootstrap'
 
 export default function AuctionFeedCard({ auction, idx, handleGetBids }) { 
   const [time, setTime] = useState(Date.now());
-  const total = (auction.start + (2500 * auction.time)) - (time / 1000); // 604800 = 1 Week
+  const total = (auction.start + (10000 * auction.time)) - (time / 1000); // 604800 = 1 Week
 
   const [amount, setAmount] = useState(0);
 
@@ -74,6 +74,7 @@ export default function AuctionFeedCard({ auction, idx, handleGetBids }) {
               </Form.Group>
             </Form>
             <Button onClick={handlePlaceBid}>Place Bid</Button>
+            <strong>{auction.status}</strong>
           </Stack>
         </Card.Body>
       </Card>
