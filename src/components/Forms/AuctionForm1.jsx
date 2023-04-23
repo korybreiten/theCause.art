@@ -25,6 +25,7 @@ export default function AuctionForm1({ profileData, handleGetProfile }){
     start: 0,
     time: 0,
     funds: 0,
+    bid: 0,
     image1: '',
     image2: '',
     image3: '',
@@ -124,6 +125,7 @@ export default function AuctionForm1({ profileData, handleGetProfile }){
         start: startDate,
         time: timeDuration,
         funds: auctionState.funds,
+        bid: auctionState.bid,
         cause: auctionState.cause,
         status: 'ACTIVE'
       }
@@ -149,6 +151,7 @@ export default function AuctionForm1({ profileData, handleGetProfile }){
           height: auctionState.height,
           depth: auctionState.depth,
           funds: auctionState.funds,
+          bid: auctionState.bid,
           cause: auctionState.cause,
           start: cause.start,
           time: cause.time
@@ -160,7 +163,8 @@ export default function AuctionForm1({ profileData, handleGetProfile }){
           width: auctionState.width,
           height: auctionState.height,
           depth: auctionState.depth,
-          funds: auctionState.funds
+          funds: auctionState.funds,
+          bid: auctionState.bid,
         };
       };
       await auctionService.update(formData);
@@ -211,6 +215,7 @@ export default function AuctionForm1({ profileData, handleGetProfile }){
         start: 0,
         time: 0,
         funds: 0,
+        bid: 0,
         image1: '',
         image2: '',
         image3: '',

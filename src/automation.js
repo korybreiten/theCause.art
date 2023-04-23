@@ -8,12 +8,13 @@ const duration = 10000;
 // 1 Hour = 36000000
 // 30 Mins = 18000000
 // 10 min = 600000
+// 10 sec = 10000
 
-// Get Active Causes/Auctions
-// Check if Completed
-// FInd highest bid per auction
+// Get active causes/auctions
+// Check if completed
+// Find highest bid per cause/auction
 // Initiate payment with accounts on hand
-// Update Auctions to Completed status
+// Update causes/auctions to completed status
 
 const run = true;
 
@@ -29,9 +30,10 @@ async function checkActive() {
         causes.forEach(function(cause){
             // 604800 = 1 Week
             let total = (cause.start + (500 * cause.time)) - (Date.now() / 1000);
-            console.log(total)
+            console.log('CAUSE TOTAL', total)
             if (total <= 0) {
                 updateCause(cause.id)
+                checkBidCauseResult(cause.id);
             }
         })
         console.log('***Checking Auctions***');
@@ -39,22 +41,13 @@ async function checkActive() {
         auctions.forEach(function(auction){
             // 604800 = 1 Week
             let total = (auction.start + (500 * auction.time)) - (Date.now() / 1000);
-            console.log(total)
+            console.log('AUCTION TOTAL', total)
             if (total <= 0) {
                 updateAuction(auction.id)
+                checkBidAuctionResult(auction.id);
             }
         })
-        console.log('***Checking Bids***');
-        const bids = await Bids.findAll({ where: { status: 'ACTIVE'} });
-        bids.forEach(function(bid){
-            if (bid.cause > 0) {
-                checkBidCause(bid.id, bid.cause)
-            } else {
-                checkBidAuction(bid.id, bid.auction);
-            }
-        })
-        checkBidCauseResult();
-        checkBidAuctionResult();
+        
         setTimeout(checkActive, duration)
     } catch (err) {
         console.log(err.message);
@@ -64,13 +57,13 @@ async function checkActive() {
 
 async function updateCause(causeId) {
     try {
-        console.log('***Updating Cause***')
+        console.log('***UPDATING CAUSE***')
         const cause = await Causes.findOne({ where: { id: causeId } });
 
         await cause.update({
             status: 'COMPLETED'
         })
-        console.log('***Cause ', cause.name, ' Completed***')
+        console.log('***CAUSE ', cause.name, ' COMPLETED***')
     } catch (err) {
         console.log(err.message);
     }
@@ -78,83 +71,66 @@ async function updateCause(causeId) {
 
 async function updateAuction(auctionId) {
     try {
-        console.log('***Updating Auction***')
+        console.log('***UPDATING AUCTION***')
         const auction = await Auctions.findOne({ where: { id: auctionId } });
 
         await auction.update({
             status: 'COMPLETED'
         })
-        console.log('***Auction ', auction.name, ' Completed***')
+        console.log('***AUCTION ', auction.name, ' COMPLETED***')
     } catch (err) {
         console.log(err.message);
     }
 }
 
-async function checkBidCause(bidId, causeId) {
-    // Find the cause and check if completed
-    // If true, find bid and update with completed status
+async function checkBidCauseResult(causeId) {
+    // Find the bids by cause Id
+    // Sort by funds
+    // The 0 position is updated as winner
+    // Find the rest of the active bids for that cause Id
+    // Update them as outbid
     try {
-        const cause = await Causes.findOne({ where: { id: causeId } });
-        if (cause.status === 'COMPLETED') {
-            const bid = await Bids.findOne({ where: { id: bidId } });
-            
+        const bids1 = await Bids.findAll({ where: { cause: causeId } });
+        bids1.sort(function(a,b){return a.funds - b.funds});
+        bids1[0].update({
+            status: 'WINNER'
+        })
+        console.log('***BID WINNER***', bids1[0])
+
+        const bids2 = await Bids.findAll({ where: { cause: causeId, status: 'ACTIVE' } });
+        bids2.forEach(function(bid){
             bid.update({
-                status: 'COMPLETED'
+                status: 'OUTBID'
             })
-            console.log('***Bid ', bid.id, ' Completed***')
-        }
+        })
 
-        
+
     } catch (err) {
         console.log(err.message);
     }
 }
 
-async function checkBidAuction(bidId, auctionId) {
-    // Find the auction and check if completed
-    // If true, find bid and update with completed status
+async function checkBidAuctionResult(auctionId) {
+    // Find the bids by auction Id
+    // Sort by funds
+    // The 0 position is updated as winner
+    // Find the rest of the active bids for that auction Id
+    // Update them as outbid
     try {
-        const auction = await Auctions.findOne({ where: { id: auctionId } });
-        if (auction.status === 'COMPLETED') {
-            const bid = await Bids.findOne({ where: { id: bidId } });
-            
+        const bids1 = await Bids.findAll({ where: { auction: auctionId } });
+        bids1.sort(function(a,b){return a.funds - b.funds});
+        bids1[0].update({
+            status: 'WINNER'
+        })
+        console.log('***BID WINNER***', bids1[0])
+
+        const bids2 = await Bids.findAll({ where: { auction: auctionId, status: 'ACTIVE' } });
+        bids2.forEach(function(bid){
             bid.update({
-                status: 'COMPLETED'
+                status: 'OUTBID'
             })
-            console.log('***Bid ', bid.id, ' Completed***')
-        }
+        })
 
-        
-    } catch (err) {
-        console.log(err.message);
-    }
-}
-
-async function checkBidCauseResult() {
-    // Find the bids that are completed
-    // Sort by cause and then by funds
-    // The 0 position is updated as winner per auction id
-    try {
-        const bids = await Bids.findAll({ where: { status: "COMPLETED" } });
-        bids.sort(function(a,b){return a.cause - b.cause});
-        bids.sort(function(a,b){return a.funds - b.funds});
-
-        // console.log('***Bid Cause Order***', bids)
-    } catch (err) {
-        console.log(err.message);
-    }
-}
-
-async function checkBidAuctionResult() {
-    // Find the bids that are completed
-    // Sort by cause and then by funds
-    // The 0 position is updated as winner per auction id
-    try {
-        const bids = await Bids.findAll({ where: { status: "COMPLETED" } });
-        bids.sort(function(a,b){return a.auction - b.auction});
-        bids.sort(function(a,b){return a.funds - b.funds});
-
-        // console.log('***Bid Auction Order***', bids)
     } catch (err) {
         console.log(err.message);
     }

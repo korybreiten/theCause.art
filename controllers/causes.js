@@ -58,7 +58,7 @@ async function getOne(req, res) {
 
 async function getAll(req, res){
     try {
-        const causes = await Causes.findAll({ order: [['funds', 'DESC'], ['goal', 'ASC']], limit: 4 });
+        const causes = await Causes.findAll({  where: { status: 'ACTIVE' }, order: [['funds', 'DESC'], ['goal', 'ASC']], limit: 4 });
         res.status(200).json( causes )
         
     } catch(err){

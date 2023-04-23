@@ -13,6 +13,10 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.STRING,
             allowNull: true,
         },
+        bid: {
+            type: Sequelize.INTEGER,
+            allowNull: true
+        },
         funds: {
             type: Sequelize.INTEGER,
             allowNull: true

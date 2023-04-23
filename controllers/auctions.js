@@ -38,6 +38,7 @@ async function update(req, res) {
       depth: req.body.depth,
       start: req.body.start,
       time: req.body.time,
+      bid: req.body.bid,
       funds: req.body.funds,
       image1: req.body.image1,
       image2: req.body.image2,
@@ -64,14 +65,8 @@ async function getOne(req, res) {
 
 async function getAll(req, res) {
   try {
-    const data = await Auctions.findAll({ });
-    let auctions = [];
-    data.forEach(function(auction){
-      if (auction.start > 0){
-        auctions.push(auction);
-      };
-    })
-    res.status(200).json( auctions )
+    const auctions = await Auctions.findAll({ where: { status: 'ACTIVE' }, order: [['start', 'DESC'], ['funds', 'DESC']], limit: 24 });
+    return res.status(200).json( auctions )
 
   } catch (err) {
     return res.status(400).json(err);

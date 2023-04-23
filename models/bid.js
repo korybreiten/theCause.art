@@ -9,15 +9,15 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             allowNull: false
         },
+        cause: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
         auction: {
             type: Sequelize.INTEGER,
             allowNull: false
         },
         amount: {
-            type: Sequelize.INTEGER,
-            allowNull: false
-        },
-        cause: {
             type: Sequelize.INTEGER,
             allowNull: false
         },
