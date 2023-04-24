@@ -13,11 +13,9 @@ export default function AuctionFeedCard({ auction, idx, handleGetBids }) {
 
   const [minimum, setMinimum] = useState(auction.funds + 1);
   const [amount, setAmount] = useState(auction.funds + 1);
-  
 
   function handleClose() {
     setShowAuction(false);
-    setMinimum(auction.funds + 1)
   };
 
   function handleAmountChange(e){
@@ -43,6 +41,16 @@ export default function AuctionFeedCard({ auction, idx, handleGetBids }) {
     }
   }
 
+  function showModal(){
+    setShowAuction(true);
+    setFunds();
+  }
+
+  function setFunds() {
+    setMinimum(auction.funds + 1);
+    setAmount(auction.funds + 1);
+    console.log('HERRROOOOO')
+  }
 
   useEffect(() => {
     const interval = setInterval(() => setTime(Date.now()), 1000);
@@ -53,7 +61,7 @@ export default function AuctionFeedCard({ auction, idx, handleGetBids }) {
 
   return (
     <Container id='auctionFeedCont'>
-      <Card id='auctionFeedCard' key={idx} onClick={() => setShowAuction(true)}>
+      <Card id='auctionFeedCard' key={idx} onClick={showModal}>
         <Card.Body>            
           <Stack id='auctionFeedTop'>
             {auction.image1 ? <Image src={ auction.image1 } alt='' id='auctionMainFeed' /> : <Image src={ '/icons/image.svg' } alt='' id='auctionMainFeed' /> }
