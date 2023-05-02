@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Image, Button, Form, Container, Stack } from 'react-bootstrap';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Image, Container, Stack } from 'react-bootstrap';
 import '../styles/Footer.css';
 
 export default function Footer(){

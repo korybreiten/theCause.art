@@ -4,7 +4,7 @@ import ArtistFeedCard from '../Cards/ArtistFeedCard';
 
 
 
-import { Container, Accordion, Image, Button, Stack } from 'react-bootstrap';
+import { Container, Stack } from 'react-bootstrap';
 
 
 export default function ArtistFeed({ artists }) {

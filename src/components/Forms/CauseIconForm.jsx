@@ -5,7 +5,7 @@ import causeService from '../../utils/causeService';
 import imageService from '../../utils/imageService';
 import userService from '../../utils/userService';
 
-import { Button, Form, Container, Stack, Modal, Image } from 'react-bootstrap';
+import { Button, Form, Container, Modal, Image } from 'react-bootstrap';
 
 export default function CauseIconForm({ causeState, handleGetCauseData }){
   const [selectedFile, setSelectedFile] = useState('');

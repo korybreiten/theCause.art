@@ -4,7 +4,7 @@ import CauseFeedCard from '../Cards/CauseFeedCard';
 
 
 
-import { Container, Accordion, Image, Button, Stack } from 'react-bootstrap';
+import { Container, Stack } from 'react-bootstrap';
 
 
 export default function CauseFeed({ causes }) {

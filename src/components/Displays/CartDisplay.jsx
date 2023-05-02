@@ -1,15 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {Link} from 'react-router-dom';
-import ErrorMessage from '../System/ErrorMessage';
-import bidService from '../../utils/bidService';
 import BidDisplayCard from '../Cards/BidDisplayCard';
 
-import { Button, Form, Container, Stack, Modal, Image, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
-import auctionService from '../../utils/auctionService';
+import { Button, Form, Container, Stack, Modal } from 'react-bootstrap';
 
-export default function CartDisplay({ profileData, handleGetBids, bids, subtotal, fees, total }){
-    const [payee, setPayee] = useState();
-    const [auctionId, setAuctionId] = useState();
+export default function CartDisplay({ handleGetBids, bids, subtotal, fees, total }){
     const [show, setShow] = useState(false);
 
     function handleShow(){
@@ -21,30 +16,6 @@ export default function CartDisplay({ profileData, handleGetBids, bids, subtotal
         setShow(false);
     };
 
-    function handleBidComplete() {
-        let i = 0;
-        if (i < bids.length) {
-            if (bids[i].status !== 'COMPLETE') {
-                handleBidUpdate(bids[i].id);
-                console.log("BID", bids[i], "COMPLETED");
-                i++;
-            };
-        }
-    };
-
-    async function handleBidUpdate(bidId){
-        try {
-            let formData = {
-                id: bidId,
-                status: 'COMPLETE'
-            };
-            await bidService.update(formData);
-
-            handleClose();
-        } catch (err) {
-            console.log(err.message);
-        };
-    };
         
     return (
         <Container>

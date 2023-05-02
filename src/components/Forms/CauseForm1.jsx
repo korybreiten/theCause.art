@@ -6,7 +6,7 @@ import userService from '../../utils/userService';
 import causeService from '../../utils/causeService';
 import CauseIconForm from './CauseIconForm';
 
-import { Button, Form, Container, Stack, Modal, Image, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Button, Form, Container, Stack, Modal, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 
 
 export default function CauseForm1({ profileData, handleGetProfile }){

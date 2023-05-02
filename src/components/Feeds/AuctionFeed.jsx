@@ -1,10 +1,9 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import AuctionFeedCard from '../Cards/AuctionFeedCard';
 
 
 
-import { Container, Accordion, Image, Button, Stack } from 'react-bootstrap';
+import { Container, Stack } from 'react-bootstrap';
 
 
 export default function AuctionFeed({ auctions, handleGetBids }) {

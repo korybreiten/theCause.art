@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import WelcomeForm from '../components/Forms/LoginForm';
 import Content from '../layouts/Content';
 import Navbar from '../layouts/Navbar';
 import Footer from '../layouts/Footer';
@@ -9,7 +8,6 @@ import UserDisplay from '../components/Displays/UserDisplay';
 import CauseDisplay from '../components/Displays/CauseDisplay';
 import searchService from '../utils/searchService';
 import userService from '../utils/userService';
-import imageService from '../utils/imageService';
 import bidService from '../utils/bidService';
 
 import { Container, Stack, ThemeProvider } from 'react-bootstrap';
@@ -22,11 +20,11 @@ function App() {
   const [subtotal, setSubtotal] = useState();
   const [fees, setFees] = useState();
   
-  const [joinError, setJoinError ] = useState('');
-  const [logError, setLoginError ] = useState('');
   const [searchError, setSearchError ] = useState('');
 
   const [results, setResults] = useState([]);
+
+
 
   async function handleJoin(joinState){
     try {
@@ -34,7 +32,6 @@ function App() {
       handleGetProfile();
     } catch (err) {
       console.log(err.message);
-      setJoinError(err.message);
     };
   };
 
@@ -42,10 +39,8 @@ function App() {
     try {
       await userService.login(logState);
       handleGetProfile();
-      handleGetBids();
     } catch (err) {
       console.log(err.message);
-      setLoginError(err.message);
     };
   };
 
@@ -53,6 +48,7 @@ function App() {
     try {
       const user = await userService.getUsername(userService.getToken());
       setProfileData(user);
+      handleGetBids();
     } catch (err) {
       console.log(err.message);
     };
@@ -85,9 +81,15 @@ function App() {
   async function handleGetBids(){
     try {
       if (profileData) {
-        const formData = {id: profileData.id};
-        const data = await bidService.getUser(formData);
-        setBids([...data]);
+        let bids = []
+        const data = await bidService.getUser({id: profileData.id});
+        data.forEach(function(bid){
+          if (bid.status === 'WINNER') {
+            bids.push(bid)
+          }
+        })
+        setBids(bids);
+        handleGetTotal();
       }
     } catch (err) {
       console.log(err.message)
@@ -96,37 +98,41 @@ function App() {
 
   async function handleGetTotal() {
     try {
-      if (profileData) {
-        const formData = {id: profileData.id};
-        const data = await bidService.getUser(formData);
-        let sub = 0;
-        let fee = 0;
-        let sum = 0;
-        data.forEach(function(bid) {
-          // Check if bid was for a Cause
-          // If not add a server fee of $1.00 for each bid
-          if (bid.cause > 0) {
-            sub += bid.amount;
-          } else {
-            sub += bid.amount;
-            fee += 1;
-          };
-        });
+      let sub = 0;
+      let fee = 0;
+      let sum = 0;
+      let bids = [];
+      const data = await bidService.getUser({id: profileData.id});
+      data.forEach(function(bid){
+        if (bid.status === 'WINNER') {
+          bids.push(bid)
+        };
+      });
+
+      bids.forEach(function(bid) {
+        // Check if bid was for a Cause
+        // If not add a server fee of $1.00 for each bid
+        if (bid.cause > 0) {
+          sub += bid.amount;
+        } else {
+          sub += bid.amount;
+          fee += 1;
+        };
+        
         // Add up the total and assign values as states
         sum = sub + fee;
         setSubtotal(sub);
         setFees(fee);
         setTotal(sum);
-      };
+      })
     } catch (err) {
-      console.log(err.message);
-    }
+      console.log(err.message)
+    };
   };
 
   useEffect(() => {
     handleGetProfile();
-    handleGetBids();
-    handleGetTotal();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

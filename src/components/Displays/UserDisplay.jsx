@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import userService from '../../utils/userService';
 
-import { Container, Accordion, Image, Button, Stack } from 'react-bootstrap';
+import { Container, Image, Stack } from 'react-bootstrap';
 
 
 export default function UserDisplay() {

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import ProfileAvatarForm from '../Forms/ProfileAvatarForm';
 import ProfileEmailForm from '../Forms/ProfileEmailForm';
@@ -9,11 +9,8 @@ import AuctionForm3 from '../Forms/AuctionForm3';
 import CauseForm1 from '../Forms/CauseForm1';
 import CauseForm2 from '../Forms/CauseForm2';
 import CauseForm3 from '../Forms/CauseForm3';
-import ErrorMessage from '../System/ErrorMessage';
-import userService from '../../utils/userService';
-import imageService from '../../utils/imageService';
 
-import { Container, Modal, Image, Button, Stack } from 'react-bootstrap';
+import { Container, Stack } from 'react-bootstrap';
 
 
 export default function ProfileDisplay({ profileData, handleGetProfile }) {

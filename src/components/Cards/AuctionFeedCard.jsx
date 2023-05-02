@@ -49,7 +49,6 @@ export default function AuctionFeedCard({ auction, idx, handleGetBids }) {
   function setFunds() {
     setMinimum(auction.funds + 1);
     setAmount(auction.funds + 1);
-    console.log('HERRROOOOO')
   }
 
   useEffect(() => {

@@ -7,13 +7,13 @@ import causeService from '../../utils/causeService';
 
 
 export default function BidDisplayCard({ bid, idx, handleGetBids, setAuctionId }) {
+  const [disabled, setDisabled] = useState(true);
   const [cause, setCause] = useState();
   const [auction, setAuction] = useState();
 
   async function handleGetCauseData() {
     try {
-      const formData = {id: bid.cause}
-      const data = await causeService.getOne(formData);
+      const data = await causeService.getOne({id: bid.cause});
       setCause(data);
     } catch (err) {
       console.log(err.message);
@@ -22,18 +22,21 @@ export default function BidDisplayCard({ bid, idx, handleGetBids, setAuctionId }
 
   async function handleGetAuctionData() {
     try {
-      const formData = {id: bid.auction}
-      const data = await auctionService.getOne(formData);
+      const data = await auctionService.getOne({id: bid.auction});
+      // 43200 sec = 12 hours for time to be able to cancel bid
+      // 604800 sec = 1 week
+      if ((data.start + (604800 * data.time) - (Date.now() / 1000)) >= 43200) {
+        setDisabled(false)
+      }
       setAuction(data);
     } catch (err) {
       console.log(err.message);
     };
   };
 
-  async function handleRemoveBid(){
+  async function handleCancelBid() {
     try {
-      const formData = {id: bid.id}
-      await bidService.remove(formData);
+      await bidService.update({id: bid.id, status: 'CANCELLED'});
       handleGetBids();
     } catch (err) {
       console.log(err.message);
@@ -53,13 +56,13 @@ export default function BidDisplayCard({ bid, idx, handleGetBids, setAuctionId }
             <Stack direction='horizontal'>
               <Image src={ auction && auction.image1 ? auction.image1 : '/icons/image.svg' } alt='' id='cartImage' />
               <Stack>
-                <strong>Auction: { auction && auction.name ? auction.name : 'Error' }</strong>
+                <strong>Auction: { auction && auction.name ? auction.name : bid.auction }</strong>
                 <strong>Cause: { cause && cause.name ? cause.name : 'None' }</strong>
                 <strong>Amount: ${ bid.amount }.00</strong>
                 <strong>{bid.status}</strong>
               </Stack>
             </Stack>
-            <Button variant='danger' onClick={handleRemoveBid}>Remove</Button>
+            <Button variant='danger' disabled={disabled} onClick={handleCancelBid}>Cancel</Button>
           </Stack>
         </Card.Body>
       </Card>

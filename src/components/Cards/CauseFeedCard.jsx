@@ -1,7 +1,7 @@
 import React, { useState, useEffect} from 'react';
 import auctionService from '../../utils/auctionService';
 
-import { Card, Container, Stack, Image, ProgressBar, Carousel, Button } from 'react-bootstrap'
+import { Card, Container, Stack, Image, ProgressBar, Carousel } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom';
 
 

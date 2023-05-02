@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-import {Link} from 'react-router-dom';
-import ErrorMessage from '../System/ErrorMessage';
 import auctionService from '../../utils/auctionService';
 import imageService from '../../utils/imageService';
-import userService from '../../utils/userService';
 
-import { Button, Form, Container, Stack, Modal, Image } from 'react-bootstrap';
+import { Button, Form, Container, Modal, Image } from 'react-bootstrap';
 
 export default function AuctionImageForm1({ auctionState, handleGetAuctionData }){
   const [selectedFile, setSelectedFile] = useState('');

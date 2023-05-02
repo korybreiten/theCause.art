@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import {Link} from 'react-router-dom';
 import userService from '../../utils/userService';
 import causeService from '../../utils/causeService';
 import CauseDisplayCard from '../Cards/CauseDisplayCard';
 
 
 
-import { Container, Accordion, Image, Button, Stack } from 'react-bootstrap';
+import { Container, Stack } from 'react-bootstrap';
 
 
 export default function CauseDisplay() {

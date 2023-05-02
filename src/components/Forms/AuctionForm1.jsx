@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import ErrorMessage from '../System/ErrorMessage';
 import userService from '../../utils/userService';
 import causeService from '../../utils/causeService';
 import auctionService from '../../utils/auctionService';
@@ -222,7 +221,7 @@ export default function AuctionForm1({ profileData, handleGetProfile }){
         cause: 0
       });
 
-      await auctionService.remove({id: id});
+      await auctionService.update({id: id, status: 'CANCELLED'});
       const formData = { auction1: 0, id: profileData.id };
       await userService.update(formData);
       handleGetProfile();
