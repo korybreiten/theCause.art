@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import userService from '../../utils/userService';
 import causeService from '../../utils/causeService';
 import CauseDisplayCard from '../Cards/CauseDisplayCard';
 
@@ -9,13 +8,7 @@ import { Container, Stack } from 'react-bootstrap';
 
 
 export default function CauseDisplay() {
-    const [profileData, setProfileData] = useState(userService.getToken());
     const [causes, setCauses] = useState();
-
-
-    function handleGetProfile(){
-        setProfileData(userService.getToken());
-    };
 
     async function handleGetCauses(){
         try {
@@ -27,7 +20,6 @@ export default function CauseDisplay() {
     };
 
     useEffect(() => {
-        handleGetProfile();
         handleGetCauses();
     }, [])
 

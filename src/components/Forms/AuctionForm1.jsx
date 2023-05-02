@@ -7,7 +7,7 @@ import AuctionImageForm2 from './AuctionImageForm2';
 import AuctionImageForm3 from './AuctionImageForm3';
 import CauseFeedCard from '../Cards/CauseFeedCard';
 
-import { Button, Form, Container, Stack, Modal, Image, ToggleButtonGroup, ToggleButton, Dropdown } from 'react-bootstrap';
+import { Button, Form, Container, Stack, Modal, ToggleButtonGroup, ToggleButton, Dropdown } from 'react-bootstrap';
 
 
 export default function AuctionForm1({ profileData, handleGetProfile }){
