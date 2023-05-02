@@ -29,7 +29,7 @@ async function checkActive() {
         const causes = await Causes.findAll({ where: { status: 'ACTIVE'} });
         causes.forEach(function(cause){
             // 604800 = 1 Week
-            let total = (cause.start + (500 * cause.time)) - (Date.now() / 1000);
+            let total = (cause.start + (604800 * cause.time)) - (Date.now() / 1000);
             console.log('CAUSE TOTAL', total)
             if (total <= 0) {
                 updateCause(cause.id)
@@ -40,7 +40,7 @@ async function checkActive() {
         const auctions = await Auctions.findAll({ where: { status: 'ACTIVE'} });
         auctions.forEach(function(auction){
             // 604800 = 1 Week
-            let total = (auction.start + (500 * auction.time)) - (Date.now() / 1000);
+            let total = (auction.start + (604800 * auction.time)) - (Date.now() / 1000);
             console.log('AUCTION TOTAL', total)
             if (total <= 0) {
                 updateAuction(auction.id)

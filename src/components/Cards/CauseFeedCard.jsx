@@ -12,7 +12,7 @@ export default function CauseFeedCard({ cause, idx}) {
   const [totalAuctions, setTotalAuctions] = useState();
   
   const [time, setTime] = useState(Date.now());
-  const total = (cause.start + (500 * cause.time)) - (time / 1000);
+  const total = (cause.start + (604800 * cause.time)) - (time / 1000);
 
   const [index, setIndex] = useState(0);
   const [dropdown, setDropdown] = useState(false);

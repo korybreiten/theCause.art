@@ -5,7 +5,7 @@ import { Card, Container, Stack, Image } from 'react-bootstrap'
 
 export default function CauseDisplayCard({ cause, idx }) {
   const [time, setTime] = useState(Date.now());
-  const total = (cause.start + (10000 * cause.time)) - (time / 1000);
+  const total = (cause.start + (604800 * cause.time)) - (time / 1000);
 
   useEffect(() => {
     const interval = setInterval(() => setTime(Date.now()), 1000);

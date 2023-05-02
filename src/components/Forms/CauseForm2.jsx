@@ -6,10 +6,10 @@ import userService from '../../utils/userService';
 import causeService from '../../utils/causeService';
 import CauseIconForm from './CauseIconForm';
 
-import { Button, Form, Container, Stack, Modal, Image, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
+import { Button, Form, Container, Stack, Modal, ToggleButtonGroup, ToggleButton } from 'react-bootstrap';
 
 
-export default function ProfileCauseForm1({ profileData, handleGetProfile }){
+export default function CauseForm1({ profileData, handleGetProfile }){
   let id = profileData.cause2;
   const [invalid, setInvalid] = useState(true);
   const [causeState, setCauseState]  = useState({
@@ -30,7 +30,7 @@ export default function ProfileCauseForm1({ profileData, handleGetProfile }){
   };
 
   const [time, setTime] = useState(Date.now());
-  const total = (start + (604800 * duration)) - (time / 1000);
+  const total = (start + (604800 * duration)) - (time / 1000); // 604800 = 1 Week
 
   const [showUpdate, setShowUpdate] = useState(false);
   const [showStart, setShowStart] = useState(false);
@@ -91,7 +91,8 @@ export default function ProfileCauseForm1({ profileData, handleGetProfile }){
         goal: causeState.goal,
         funds: causeState.funds,
         start: startDate,
-        time: causeState.time
+        time: causeState.time,
+        status: 'ACTIVE'
       }
       await causeService.update(formData);
       handleGetProfile();

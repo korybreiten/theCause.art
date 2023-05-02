@@ -9,7 +9,7 @@ import auctionService from '../../utils/auctionService';
 export default function AuctionFeedCard({ auction, idx, handleGetBids }) { 
   const [showAuction, setShowAuction] = useState(false);
   const [time, setTime] = useState(Date.now());
-  const total = (auction.start + (500 * auction.time)) - (time / 1000); // 604800 = 1 Week
+  const total = (auction.start + (604800 * auction.time)) - (time / 1000); // 604800 = 1 Week
 
   const [minimum, setMinimum] = useState(auction.funds + 1);
   const [amount, setAmount] = useState(auction.funds + 1);
