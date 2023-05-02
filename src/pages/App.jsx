@@ -102,29 +102,33 @@ function App() {
       let fee = 0;
       let sum = 0;
       let bids = [];
-      const data = await bidService.getUser({id: profileData.id});
-      data.forEach(function(bid){
-        if (bid.status === 'WINNER') {
-          bids.push(bid)
-        };
-      });
+      if (profileData) {
+        const data = await bidService.getUser({id: profileData.id});
+        data.forEach(function(bid){
+          if (bid.status === 'WINNER') {
+            bids.push(bid)
+          };
+        });
+  
+        bids.forEach(function(bid) {
+          // Check if bid was for a Cause
+          // If not add a server fee of $1.00 for each bid
+          if (bid.cause > 0) {
+            sub += bid.amount;
+          } else {
+            sub += bid.amount;
+            fee += 1;
+          };
+          
+          // Add up the total and assign values as states
+          sum = sub + fee;
+          setSubtotal(sub);
+          setFees(fee);
+          setTotal(sum);
+        })
+      }
 
-      bids.forEach(function(bid) {
-        // Check if bid was for a Cause
-        // If not add a server fee of $1.00 for each bid
-        if (bid.cause > 0) {
-          sub += bid.amount;
-        } else {
-          sub += bid.amount;
-          fee += 1;
-        };
-        
-        // Add up the total and assign values as states
-        sum = sub + fee;
-        setSubtotal(sub);
-        setFees(fee);
-        setTotal(sum);
-      })
+      
     } catch (err) {
       console.log(err.message)
     };
