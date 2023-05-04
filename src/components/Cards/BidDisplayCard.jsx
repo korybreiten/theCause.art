@@ -6,7 +6,7 @@ import bidService from '../../utils/bidService';
 import causeService from '../../utils/causeService';
 
 
-export default function BidDisplayCard({ bid, idx, handleGetBids, setAuctionId }) {
+export default function BidDisplayCard({ bid, idx, handleGetBids }) {
   const [disabled, setDisabled] = useState(true);
   const [cause, setCause] = useState();
   const [auction, setAuction] = useState();

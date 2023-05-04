@@ -18,7 +18,7 @@ async function create(req, res) {
             auction: req.body.auction,
             amount: req.body.amount,
             cause: req.body.cause,
-            status: 'ACTIVE'
+            status: 'LEADER'
         })
         const bidId = bid.dataValues.id;
 
@@ -33,7 +33,8 @@ async function update(req, res) {
         const bid = await Bids.findOne({ where: { id: req.params.id } });
 
         await bid.update({
-            amount: req.body.amount
+            amount: req.body.amount,
+            status: req.body.status
         });
 
         return res.status(200).json({});

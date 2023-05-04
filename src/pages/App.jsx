@@ -15,7 +15,7 @@ import { Container, Stack, ThemeProvider } from 'react-bootstrap';
 
 function App() {
   const [profileData, setProfileData] = useState();
-  const [bids, setBids] = useState(handleGetTotal());
+  const [bids, setBids] = useState();
   const [total, setTotal] = useState();
   const [subtotal, setSubtotal] = useState();
   const [fees, setFees] = useState();
@@ -24,7 +24,12 @@ function App() {
 
   const [results, setResults] = useState([]);
 
+  const [doOnce, setDoOnce] = useState(true);
 
+  if (profileData && doOnce) {
+    handleGetTotal();
+    setDoOnce(false);
+  }
 
   async function handleJoin(joinState){
     try {
@@ -82,11 +87,13 @@ function App() {
     try {
       if (profileData) {
         let bids = []
+
         const data = await bidService.getUser({id: profileData.id});
         data.forEach(function(bid){
-          if (bid.status === 'WINNER') {
+          if (bid.status === 'LEADER') {
             bids.push(bid)
           }
+
         })
         setBids(bids);
         handleGetTotal();
@@ -105,7 +112,7 @@ function App() {
       if (profileData) {
         const data = await bidService.getUser({id: profileData.id});
         data.forEach(function(bid){
-          if (bid.status === 'WINNER') {
+          if (bid.status === 'LEADER') {
             bids.push(bid)
           };
         });
@@ -136,7 +143,6 @@ function App() {
 
   useEffect(() => {
     handleGetProfile();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

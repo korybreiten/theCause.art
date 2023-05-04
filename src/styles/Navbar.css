@@ -75,7 +75,7 @@
 }
 
 #loginCont {
-  width: 0;
+  width: fit-content;
 }
 
 #icon {
@@ -83,7 +83,7 @@
 }
 
 #searchContainer {
-  min-width: 10rem;
+  width: 35rem;
   padding-right: 1rem;
 }
 

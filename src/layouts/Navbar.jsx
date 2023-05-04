@@ -47,7 +47,7 @@ export default function Navbar({ profileData, handleJoin, handleLogin, handleLog
                 </Stack>
             </Container>
             <Container id="navLinks">
-                <Stack direction="horizontal">
+                <Stack direction="horizontal" style={{height: '2.5rem'}}>
                     <Link id="link" to={'/causes'}>
                         <Button style={{padding: 0, fontSize: '1.5rem'}} onClick={() => setActive('causes')} active={active === 'causes'}>Causes</Button>
                     </Link>
@@ -57,7 +57,7 @@ export default function Navbar({ profileData, handleJoin, handleLogin, handleLog
                     <Link id="link" to={'/auctions'}>
                         <Button style={{padding: 0, fontSize: '1.5rem'}} onClick={() => setActive('auctions')} active={active === 'auctions'}>Auctions</Button>
                     </Link>
-                    <Container id='searchSpacer' className='ms-auto' />
+                    <Container id='searchSpacer' style={{width: '-webkit-fill-available'}}/>
                     <Container id='searchContainer'>
                         <Form autoComplete="off" onSubmit={sendSearch}>
                             <Stack direction="horizontal">

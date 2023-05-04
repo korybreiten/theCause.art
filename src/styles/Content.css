@@ -7,7 +7,6 @@
 
 .container {
   padding: 0;
-  min-width: min-content;
   max-width: unset !important;
 }
 

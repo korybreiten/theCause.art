@@ -18,7 +18,7 @@ export default function CartDisplay({ handleGetBids, bids, subtotal, fees, total
 
         
     return (
-        <Container>
+        <Container style={{width: 'fit-content'}}>
             <Form  autoComplete="off">
                 <Modal show={show} onHide={handleClose}>
                     <Modal.Header closeButton>
@@ -54,10 +54,7 @@ export default function CartDisplay({ handleGetBids, bids, subtotal, fees, total
                     </Modal.Footer>
                 </Modal>
             </Form>
-            <Stack direction='horizontal'>
-                <Link id='cartIcon' className='bi bi-cart4' onClick={handleShow} />
-                <Link id='link' className='ms-auto' onClick={handleShow}><h3 id='cartTotal'>${total ? total : 0}.00</h3></Link>
-            </Stack>
+            <Link id='link' onClick={handleShow}><h3 id='cartTotal'>${total ? total : 0}.00</h3></Link>
         </Container>
     );   
 }
