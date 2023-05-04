@@ -63,6 +63,10 @@ function App() {
     userService.logout();
     setProfileData();
     setResults([]);
+    setTotal();
+    setSubtotal();
+    setBids();
+    setDoOnce(true);
   };
 
   async function handleSearch(formData) {
