@@ -25,6 +25,14 @@ module.exports = (sequelize, Sequelize) => {
       type: Sequelize.STRING,
       allowNull: true
     },
+    paypalEmail: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
+    clientId: {
+      type: Sequelize.STRING,
+      allowNull: true
+    },
     bio: {
       type: Sequelize.STRING,
       allowNull: true

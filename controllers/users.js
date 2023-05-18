@@ -80,6 +80,8 @@ async function update(req, res) {
     await user.update({
       username: req.body.username,
       email: req.body.email,
+      paypalEmail: req.body.paypalEmail,
+      clientId: req.body.clientId,
       bio: req.body.bio,
       avatar: req.body.avatar,
       auction1: req.body.auction1,
@@ -122,11 +124,14 @@ async function getAll(req, res) {
   try {
     const data = await Users.findAll({ limit: 5 });
     let users = [];
+    // Remove the password
     data.forEach(function(user){
       const userData = {
         username: user.dataValues.username,
         funds: user.dataValues.funds,
         email: user.dataValues.email,
+        paypalEmail: user.dataValues.paypalEmail,
+        clientId: user.dataValues.clientId,
         bio: user.dataValues.bio,
         avatar: user.dataValues.avatar,
         auction1: user.dataValues.auction1,

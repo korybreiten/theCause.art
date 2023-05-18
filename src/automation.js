@@ -1,4 +1,5 @@
 const db = require('../config/database');
+const Users = db.User;
 const Auctions = db.Auction;
 const Causes = db.Cause;
 const Bids = db.Bid;
@@ -96,6 +97,13 @@ async function checkBidCauseResult(causeId) {
             status: 'WINNER'
         })
         console.log('***BID WINNER***', bids1[0])
+        const bidWinner = bids1[0];
+        const auction = Auctions.findOne({where: { id: bidWinner.auction } });
+        // Get clientId
+        const seller = Users.findOne({where: { id: auction.creator } });
+        // Get paypalEmail
+        const payee = Users.findOne({where: { id: bidWinner.creator } });
+        payment(seller.clientId, payee.paypalEmail, bidWinner);
 
         const bids2 = await Bids.findAll({ where: { cause: causeId, status: 'ACTIVE' } });
         bids2.forEach(function(bid){
@@ -137,11 +145,11 @@ async function checkBidAuctionResult(auctionId) {
 }
 
 
-function payment(total, payeeEmail){
+function payment(clientId, payeeEmail, total){
     // For a fully working example, please see:
     // https://github.com/paypal-examples/docs-examples/tree/main/standard-integration
 
-    const CLIENT_ID = process.env.CLIENT_ID;
+    const CLIENT_ID = clientId;
     const APP_SECRET = process.env.APP_SECRET;
     const baseURL = {
         sandbox: "https://api-m.sandbox.paypal.com",

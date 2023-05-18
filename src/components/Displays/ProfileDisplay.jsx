@@ -2,6 +2,8 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import ProfileAvatarForm from '../Forms/ProfileAvatarForm';
 import ProfileEmailForm from '../Forms/ProfileEmailForm';
+import ProfilePaypalEmailForm from '../Forms/ProfilePaypalEmailForm';
+import ProfilePaypalClientIdForm from '../Forms/ProfilePaypalClientIdForm';
 import ProfileBioForm from '../Forms/ProfileBioForm';
 import AuctionForm1 from '../Forms/AuctionForm1';
 import AuctionForm2 from '../Forms/AuctionForm2';
@@ -27,7 +29,7 @@ export default function ProfileDisplay({ profileData, handleGetProfile }) {
           <Stack>
             <Stack id='editBioCont'>
               <Stack direction='horizontal'>
-                { profileData ? <h3 id='label' style={{width: '-webkit-fill-available'}}>Email</h3> : null }
+                { profileData ? <h3 id='label' style={{width: '-webkit-fill-available'}}>Email (Notifications)</h3> : null }
                 { profileData ?
                   <ProfileEmailForm profileData={profileData} handleGetProfile={handleGetProfile} />
                 : null }
@@ -36,7 +38,25 @@ export default function ProfileDisplay({ profileData, handleGetProfile }) {
             </Stack>
             <Stack id='editBioCont'>
               <Stack direction='horizontal'>
-                { profileData ? <h3 id='label' style={{width: '-webkit-fill-available'}}>Bio</h3> : null }
+                { profileData ? <h3 id='label' style={{width: '-webkit-fill-available'}}>Paypal Email (Buyer)</h3> : null }
+                { profileData ?
+                  <ProfilePaypalEmailForm profileData={profileData} handleGetProfile={handleGetProfile} />
+                : null }
+              </Stack>
+              { profileData ? <h5>{profileData.paypalEmail}</h5> : null }
+            </Stack>
+            <Stack id='editBioCont'>
+              <Stack direction='horizontal'>
+                { profileData ? <h3 id='label' style={{width: '-webkit-fill-available'}}>Paypal Client Id (Seller)</h3> : null }
+                { profileData ?
+                  <ProfilePaypalClientIdForm profileData={profileData} handleGetProfile={handleGetProfile} />
+                : null }
+              </Stack>
+              { profileData ? <h5>{profileData.clientId}</h5> : null }
+            </Stack>
+            <Stack id='editBioCont'>
+              <Stack direction='horizontal'>
+                { profileData ? <h3 id='label' style={{width: '-webkit-fill-available'}}>Biography</h3> : null }
                 { profileData ?
                   <ProfileBioForm profileData={profileData} handleGetProfile={handleGetProfile} />
                 : null }
@@ -46,7 +66,7 @@ export default function ProfileDisplay({ profileData, handleGetProfile }) {
           </Stack>
         </Stack>
       </Stack>
-      { profileData ?
+      { profileData && profileData.clientId ?
         <Container>
           <Stack direction='horizontal' id='profileDisplayStack2'>
             <CauseForm1 profileData={profileData} handleGetProfile={handleGetProfile} />
@@ -59,7 +79,13 @@ export default function ProfileDisplay({ profileData, handleGetProfile }) {
             <AuctionForm3 profileData={profileData} handleGetProfile={handleGetProfile} />
           </Stack>
         </Container>
-      : null }
+      :
+      <Container style={{textAlign: 'center'}}>
+        <h3>In order to create Causes or Auctions</h3>
+        <h3>Please add your Client Id from the PayPal Developer portal at: </h3>
+        <a style={{fontSize: '2rem'}} id='link' href='https://developer.paypal.com' target='_blank'>www.developer.paypal.com</a>
+      </Container>
+      }
     </Container>
   );
 }
