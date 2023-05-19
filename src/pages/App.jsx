@@ -160,6 +160,8 @@ function App() {
               <Route path="/profile" element={ <ProfileDisplay profileData={profileData} handleGetProfile={handleGetProfile} /> } />
               <Route path="/:username" element={ <UserDisplay /> } />
               <Route path="/causes" element={ <CauseDisplay /> } />
+              <Route path="/artists" element={ <ArtistDisplay /> } />
+              <Route path="/auctions" element={ <AuctionDisplay /> } />
             </Routes>
             <Footer />
           </Stack>
