@@ -24,9 +24,11 @@ export default function UserDisplay() {
 
   return (
     <Container>
-      <Stack>
-        { userData && userData.avatar ? <Image src={ userData.avatar } alt='' id='avatarProfile' /> : <i id="avatarProfileDefault" className="bi bi-person-square" /> }
-        { userData ? <h3>{userData.username}</h3> : <h3>User Not Found</h3> }
+      <Stack direction='horizontal'>
+        <Stack>
+          { userData && userData.avatar ? <Image src={ userData.avatar } alt='' id='avatarProfile' /> : <i id="avatarProfileDefault" className="bi bi-person-square" /> }
+          { userData ? <h3>{userData.username}</h3> : <h3>User Not Found</h3> }
+        </Stack>
         { userData ? <h4>{userData.bio}</h4> : null }
       </Stack>
     </Container>

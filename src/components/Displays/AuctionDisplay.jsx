@@ -5,7 +5,7 @@ import userService from '../../utils/userService';
 import { Container, Image, Stack } from 'react-bootstrap';
 
 
-export default function CauseDisplay() {
+export default function AuctionDisplay() {
     const params = useParams();
     const [userData, setUserData] = useState();
 

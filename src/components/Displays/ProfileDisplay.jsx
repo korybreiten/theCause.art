@@ -23,7 +23,7 @@ export default function ProfileDisplay({ profileData, handleGetProfile }) {
           <ProfileAvatarForm profileData={profileData} handleGetProfile={handleGetProfile} />
             { profileData ? <h3>Username</h3> : <h3>Sign in to see profile</h3> }
             { profileData ? <h5>{profileData.username}</h5> : null }
-            { profileData ? <Link id='link' to={'/' + profileData.username}>View Public Profile</Link> : null }
+            { profileData ? <Link id='link' to={'/profile/' + profileData.username}>View Public Profile</Link> : null }
         </Stack>
         <Stack id='profileDisplayStack1Right'>
           <Stack>
@@ -81,9 +81,9 @@ export default function ProfileDisplay({ profileData, handleGetProfile }) {
         </Container>
       :
       <Container style={{textAlign: 'center'}}>
-        <h3>In order to create Causes or Auctions</h3>
-        <h3>Please add your Client Id from the PayPal Developer portal at: </h3>
-        <a style={{fontSize: '2rem'}} id='link' href='https://developer.paypal.com' target='_blank'>www.developer.paypal.com</a>
+        <h2 style={{color: 'salmon'}}>In order to create Causes or Auctions</h2>
+        <h2 style={{color: 'salmon'}}>Please add your Client Id from the PayPal Developer portal </h2>
+        <a style={{fontSize: '2rem'}} id='link' href='https://developer.paypal.com' target='_blank'>https://developer.paypal.com</a>
       </Container>
       }
     </Container>

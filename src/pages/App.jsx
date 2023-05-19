@@ -5,7 +5,11 @@ import Navbar from '../layouts/Navbar';
 import Footer from '../layouts/Footer';
 import ProfileDisplay from '../components/Displays/ProfileDisplay';
 import UserDisplay from '../components/Displays/UserDisplay';
+import CausesDisplay from '../components/Displays/CausesDisplay';
 import CauseDisplay from '../components/Displays/CauseDisplay';
+import ArtistsDisplay from '../components/Displays/ArtistsDisplay';
+import AuctionsDisplay from '../components/Displays/AuctionsDisplay';
+import AuctionDisplay from '../components/Displays/AuctionDisplay';
 import searchService from '../utils/searchService';
 import userService from '../utils/userService';
 import bidService from '../utils/bidService';
@@ -156,12 +160,14 @@ function App() {
           <Stack>
             <Navbar profileData={profileData} handleJoin={handleJoin} handleLogin={handleLogin} handleLogout={handleLogout} handleSearch={handleSearch} handleClearSearch={handleClearSearch} handleGetBids={handleGetBids} bids={bids} subtotal={subtotal} fees={fees} total={total} />
             <Routes>
-              <Route path="/" element={ <Content results={results} searchError={searchError} handleGetBids={handleGetBids} /> } />
-              <Route path="/profile" element={ <ProfileDisplay profileData={profileData} handleGetProfile={handleGetProfile} /> } />
-              <Route path="/:username" element={ <UserDisplay /> } />
-              <Route path="/causes" element={ <CauseDisplay /> } />
-              <Route path="/artists" element={ <ArtistDisplay /> } />
-              <Route path="/auctions" element={ <AuctionDisplay /> } />
+              <Route path='/' element={ <Content results={results} searchError={searchError} handleGetBids={handleGetBids} /> } />
+              <Route path='/profile' element={ <ProfileDisplay profileData={profileData} handleGetProfile={handleGetProfile} /> } />
+              <Route path='/profile/:username' element={ <UserDisplay /> } />
+              <Route path='/causes' element={ <CausesDisplay /> } />
+              <Route path='/causes/:causeId' element={ <CauseDisplay /> } />
+              <Route path='/artists' element={ <ArtistsDisplay /> } />
+              <Route path='/auctions' element={ <AuctionsDisplay /> } />
+              <Route path='/auctions/:auctionId' element={ <AuctionDisplay /> } /> 
             </Routes>
             <Footer />
           </Stack>
