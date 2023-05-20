@@ -34,7 +34,6 @@ export default function AuctionFeedCard({ auction, idx, handleGetBids }) {
       };
       if (auction.bid) {
         await bidService.update({id: auction.bid, status: 'OUTBID'});
-        console.log('HELLOOOOOO')
       }
       const bidId = await bidService.create(formData);
       await auctionService.update({id: auction.id, bid: bidId, funds: amount});

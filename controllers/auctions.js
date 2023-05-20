@@ -7,6 +7,7 @@ module.exports = {
   create,
   update,
   getOne,
+  getUser,
   getAll,
   getCause,
   remove
@@ -57,6 +58,16 @@ async function getOne(req, res) {
   try {
     const auction = await Auctions.findOne({ where: { id: req.params.id } });
     return res.status(200).json( auction );
+
+  } catch (err) {
+    return res.status(400).json(err);
+  };
+};
+
+async function getUser(req, res) {
+  try {
+    const auctions = await Auctions.findAll({ where: { creator: req.params.id } });
+    return res.status(200).json( auctions );
 
   } catch (err) {
     return res.status(400).json(err);

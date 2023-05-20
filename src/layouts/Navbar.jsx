@@ -42,7 +42,7 @@ export default function Navbar({ profileData, handleJoin, handleLogin, handleLog
                     : !profileData.avatar ?
                         <Link id="link" to={'/profile'}><Image src={ '/icons/profile.svg' } alt='' id='avatar' /></Link>
                     :
-                        <Link id="link" to={'/profile'}><Image src={ profileData.avatar } alt='' id='avatar' /></Link>
+                        <Link id="link" to={'/profile'}><Image src={ '../' + profileData.avatar } alt='' id='avatar' /></Link>
                     }
                 </Stack>
             </Container>

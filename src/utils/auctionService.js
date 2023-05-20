@@ -41,6 +41,15 @@ export function getOne(formData){
     })
 }
 
+export function getUser(formData){
+    return fetch(BASE_URL + 'user/' + formData.id, {
+        method: 'GET'
+    }).then(res => {
+        if(res.ok) return res.json()
+        throw new Error('Get Auction Error!')
+    })
+}
+
 export function getAll(){
     return fetch(BASE_URL + 'all', {
         method: 'GET'
@@ -72,6 +81,7 @@ export default {
     create,
     update,
     getOne,
+    getUser,
     getAll,
     getCause,
     remove

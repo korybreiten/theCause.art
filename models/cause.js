@@ -11,7 +11,7 @@ module.exports = (sequelize, Sequelize) => {
             unique: true
         },
         creator: {
-            type: Sequelize.STRING,
+            type: Sequelize.INTEGER,
             allowNull: false
         },
         funds: {

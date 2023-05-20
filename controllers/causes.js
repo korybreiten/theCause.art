@@ -6,6 +6,7 @@ module.exports = {
     create,
     update,
     getOne,
+    getUser,
     getAll,
     remove
 };
@@ -50,6 +51,16 @@ async function getOne(req, res) {
     try {
         const cause = await Causes.findOne({ where: { id: req.params.id } });
         return res.status(200).json( cause );
+    
+    } catch (err) {
+        return res.status(400).json(err);
+    };
+};
+
+async function getUser(req, res) {
+    try {
+        const causes = await Causes.findAll({ where: { creator: req.params.id } });
+        return res.status(200).json( causes );
     
     } catch (err) {
         return res.status(400).json(err);

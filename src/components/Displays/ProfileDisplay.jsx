@@ -23,7 +23,7 @@ export default function ProfileDisplay({ profileData, handleGetProfile }) {
           <ProfileAvatarForm profileData={profileData} handleGetProfile={handleGetProfile} />
             { profileData ? <h3>Username</h3> : <h3>Sign in to see profile</h3> }
             { profileData ? <h5>{profileData.username}</h5> : null }
-            { profileData ? <Link id='link' to={'/profile/' + profileData.username}>View Public Profile</Link> : null }
+            { profileData ? <Link id='link' to={'/' + profileData.username}>View Public Profile</Link> : null }
         </Stack>
         <Stack id='profileDisplayStack1Right'>
           <Stack>

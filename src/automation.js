@@ -17,7 +17,7 @@ const duration = 10000;
 // Initiate payment with accounts on hand
 // Update causes/auctions to completed status
 
-const run = true;
+const run = false;
 
 if (run) {
     setTimeout(checkActive, duration);

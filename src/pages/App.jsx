@@ -162,7 +162,7 @@ function App() {
             <Routes>
               <Route path='/' element={ <Content results={results} searchError={searchError} handleGetBids={handleGetBids} /> } />
               <Route path='/profile' element={ <ProfileDisplay profileData={profileData} handleGetProfile={handleGetProfile} /> } />
-              <Route path='/profile/:username' element={ <UserDisplay /> } />
+              <Route path='/:username' element={ <UserDisplay /> } />
               <Route path='/causes' element={ <CausesDisplay /> } />
               <Route path='/causes/:causeId' element={ <CauseDisplay /> } />
               <Route path='/artists' element={ <ArtistsDisplay /> } />
