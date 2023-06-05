@@ -103,7 +103,7 @@ async function checkBidCauseResult(causeId) {
         const seller = Users.findOne({where: { id: auction.creator } });
         // Get paypalEmail
         const payee = Users.findOne({where: { id: bidWinner.creator } });
-        payment(seller.clientId, payee.paypalEmail, bidWinner);
+        payment(seller.clientId, payee.paypalEmail, bidWinner.amount);
 
         const bids2 = await Bids.findAll({ where: { cause: causeId, status: 'ACTIVE' } });
         bids2.forEach(function(bid){
