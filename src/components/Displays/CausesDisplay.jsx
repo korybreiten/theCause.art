@@ -12,8 +12,8 @@ export default function CausesDisplay() {
 
     async function handleGetCauses(){
         try {
-            const data = await causeService.getAll();
-            setCauses([...data.causes]);
+            const causes = await causeService.getAll();
+            setCauses([...causes]);
         } catch (err) {
             console.log(err.message);
         };

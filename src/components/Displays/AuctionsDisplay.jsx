@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import causeService from '../../utils/causeService';
+import auctionService from '../../utils/auctionService';
 import CauseDisplayCard from '../Cards/CauseDisplayCard';
 
 
@@ -8,28 +8,28 @@ import { Container, Stack } from 'react-bootstrap';
 
 
 export default function AuctionsDisplay() {
-    const [causes, setCauses] = useState();
+    const [auctions, setAuctions] = useState();
 
-    async function handleGetCauses(){
+    async function handleGetAuctions(){
         try {
-            const data = await causeService.getAll();
-            setCauses([...data.causes]);
+            const auctions = await auctionService.getAll();
+            setAuctions([...auctions]);
         } catch (err) {
             console.log(err.message);
         };
     };
 
     useEffect(() => {
-        handleGetCauses();
+        handleGetAuctions();
     }, [])
 
     return (
         <Container>
             <Stack>
-                {!causes || typeof causes == 'undefined' ? <h2>No Data</h2> : !Array.isArray(causes) ? <h2>Results are not Array</h2> :
-                    causes.map((cause, idx) => {
+                {!auctions || typeof auctions == 'undefined' ? <h2>No Data</h2> : !Array.isArray(auctions) ? <h2>Results are not Array</h2> :
+                    auctions.map((auction, idx) => {
                         return (
-                            <CauseDisplayCard cause={cause} key={idx} />
+                            <CauseDisplayCard cause={auction} key={idx} />
                         )
                     })
                 }
