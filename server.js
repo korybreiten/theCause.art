@@ -7,7 +7,7 @@ const favicon = require('serve-favicon');
 const cors = require('cors');
 
 require('./config/database');
-require('./src/automation');
+require('./config/automation');
 
 // Require controllers here
 
